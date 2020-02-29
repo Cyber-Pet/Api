@@ -15,6 +15,22 @@ jobs:
         dotnet-version: 3.1.101
     - name: Build with dotnet
       run: dotnet build --configuration Release
+    - name: dotnet-sonarscanner
+      uses: Secbyte/dotnet-sonarscanner@2.1
+      with:
+        # Command to invoke build
+        buildCommand: dotnet build --configuration Release
+        # Command to invoke tests
+        #testCommand: # optional
+        # Specifies the key of the analyzed project in SonarQube
+        projectKey: Cyber-Pet_Api
+        # Specifies the name of the analyzed project in SonarQube
+        projectName: Cyber-Pet_Api
+        # The server URL
+        # Organisation
+        sonarOrganisation: cyber-pet
+        # Arguments to append to the begin command
+    
     - name: Test
       run: dotnet test
     - name: SonarCloud Scan
