@@ -16,11 +16,11 @@ jobs:
     - name: dotnet-sonarscanner
       uses: Secbyte/dotnet-sonarscanner@2.1
       with:
-        buildCommand: dotnet build .\CyberPet.sln
+        buildCommand: dotnet build .
+        testCommand: dotnet test .
         projectKey: Cyber-Pet_Api
         projectName: Cyber-Pet_Api
         sonarOrganisation: cyber-pet
-        beginArguments: /d:sonar.verbose="true"
       env:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
