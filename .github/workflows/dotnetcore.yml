@@ -17,3 +17,5 @@ jobs:
       run: dotnet build --configuration Release
     - name: Test
       run: dotnet test
+    - name: SonarCloud Scan
+      uses: SonarSource/sonarcloud-github-action@v1.1
