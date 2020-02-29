@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29709.97
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CyberPet.Api", "CyberPet.Api\CyberPet.Api.csproj", "{B502FDBB-1222-4BC0-93A3-97E2446492AD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CyberPet.Api", "src\CyberPet.Api\CyberPet.Api.csproj", "{9E18DF9C-40DD-4F65-8271-A5814A7BF011}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CyberPet.Tests", "CyberPet.Tests\CyberPet.Tests.csproj", "{54AE02D1-4B6F-46E8-AA96-B9F092334AF9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +13,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{B502FDBB-1222-4BC0-93A3-97E2446492AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B502FDBB-1222-4BC0-93A3-97E2446492AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B502FDBB-1222-4BC0-93A3-97E2446492AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B502FDBB-1222-4BC0-93A3-97E2446492AD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9E18DF9C-40DD-4F65-8271-A5814A7BF011}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9E18DF9C-40DD-4F65-8271-A5814A7BF011}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9E18DF9C-40DD-4F65-8271-A5814A7BF011}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9E18DF9C-40DD-4F65-8271-A5814A7BF011}.Release|Any CPU.Build.0 = Release|Any CPU
+		{54AE02D1-4B6F-46E8-AA96-B9F092334AF9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54AE02D1-4B6F-46E8-AA96-B9F092334AF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54AE02D1-4B6F-46E8-AA96-B9F092334AF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54AE02D1-4B6F-46E8-AA96-B9F092334AF9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
