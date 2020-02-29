@@ -29,51 +29,6 @@ namespace CyberPet.Api.Controllers
                     new User { Name = "Gabriel Meyer", Email = "ghmeyer0@gmail.com"},
                     new User { Name = "Renato Rezende", Email = "rrschiavo@gmail.com"}
                 };
-                var expectedUsers = new User[]
-                {
-                    new User { Name = "Gabriel Meyer", Email = "ghmeyer0@gmail.com"},
-                    new User { Name = "Renato Rezende", Email = "rrschiavo@gmail.com"}
-                };
-                var expectedUsers = new User[]
-                {
-                    new User { Name = "Gabriel Meyer", Email = "ghmeyer0@gmail.com"},
-                    new User { Name = "Renato Rezende", Email = "rrschiavo@gmail.com"}
-                };
-                var expectedUsers = new User[]
-                {
-                    new User { Name = "Gabriel Meyer", Email = "ghmeyer0@gmail.com"},
-                    new User { Name = "Renato Rezende", Email = "rrschiavo@gmail.com"}
-                };
-                var expectedUsers = new User[]
-                {
-                    new User { Name = "Gabriel Meyer", Email = "ghmeyer0@gmail.com"},
-                    new User { Name = "Renato Rezende", Email = "rrschiavo@gmail.com"}
-                };
-                var expectedUsers = new User[]
-                {
-                    new User { Name = "Gabriel Meyer", Email = "ghmeyer0@gmail.com"},
-                    new User { Name = "Renato Rezende", Email = "rrschiavo@gmail.com"}
-                };
-                var expectedUsers = new User[]
-                {
-                    new User { Name = "Gabriel Meyer", Email = "ghmeyer0@gmail.com"},
-                    new User { Name = "Renato Rezende", Email = "rrschiavo@gmail.com"}
-                };
-                var expectedUsers = new User[]
-                {
-                    new User { Name = "Gabriel Meyer", Email = "ghmeyer0@gmail.com"},
-                    new User { Name = "Renato Rezende", Email = "rrschiavo@gmail.com"}
-                };
-                var expectedUsers = new User[]
-                {
-                    new User { Name = "Gabriel Meyer", Email = "ghmeyer0@gmail.com"},
-                    new User { Name = "Renato Rezende", Email = "rrschiavo@gmail.com"}
-                };
-                var expectedUsers = new User[]
-                {
-                    new User { Name = "Gabriel Meyer", Email = "ghmeyer0@gmail.com"},
-                    new User { Name = "Renato Rezende", Email = "rrschiavo@gmail.com"}
-                };
                 UserServiceMock
                     .Setup(x => x.ReadAllAsync())
                     .ReturnsAsync(expectedUsers);
