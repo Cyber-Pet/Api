@@ -20,6 +20,7 @@ jobs:
         projectKey: Cyber-Pet_Api
         projectName: Cyber-Pet_Api
         sonarOrganisation: cyber-pet
+        beginArguments: /d:sonar.verbose="true"
       env:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
