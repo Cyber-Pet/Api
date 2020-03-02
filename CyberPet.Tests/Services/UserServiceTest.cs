@@ -1,5 +1,7 @@
 ﻿using CyberPet.Api.Models;
+using CyberPet.Api.Repositores;
 using MongoDB.Bson;
+using Moq;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -11,9 +13,11 @@ namespace CyberPet.Api.Services
     public class UserServiceTest
     {
         protected UserService ServiceUnderTest { get; }
+        protected Mock<IUserRepository> UserRepositoryMock { get; }
         public UserServiceTest()
         {
-            ServiceUnderTest = new UserService();
+            UserRepositoryMock = new Mock<IUserRepository>();
+            ServiceUnderTest = new UserService(UserRepositoryMock.Object);
         }
 
         public class ReadAllAsync : UserServiceTest
@@ -27,6 +31,9 @@ namespace CyberPet.Api.Services
                     new User { Name = "Gabriel Meyer", Email = "ghmeyer0@gmail.com"},
                     new User { Name = "Renato Rezende", Email = "rrschiavo@gmail.com"}
                 });
+                UserRepositoryMock
+                    .Setup(x => x.ReadAllAsync())
+                    .ReturnsAsync(expectedUsers);
 
                 // Act
                 var result = await ServiceUnderTest.ReadAllAsync();

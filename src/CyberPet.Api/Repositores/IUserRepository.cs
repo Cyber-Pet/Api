@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace CyberPet.Api.Repositores
 {
-    interface IUserRepository
+    public interface IUserRepository
     {
         Task<IEnumerable<User>> ReadAllAsync();
         Task<User> ReadOneAsync(ObjectId id);
