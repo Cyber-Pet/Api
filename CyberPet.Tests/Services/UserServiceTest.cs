@@ -50,6 +50,9 @@ namespace CyberPet.Api.Services
                 // Arrange
                 var userId = ObjectId.GenerateNewId();
                 var expectedUser = new User { Id = userId, Name = "Gabriel Meyer", Email = "ghmeyer0@gmail.com" };
+                UserRepositoryMock
+                    .Setup(x => x.ReadOneAsync(userId))
+                    .ReturnsAsync(expectedUser);
 
                 // Act
                 var result = await ServiceUnderTest.ReadOneAsync(userId);
@@ -63,6 +66,9 @@ namespace CyberPet.Api.Services
             {
                 // Arrange
                 var userId = ObjectId.GenerateNewId();
+                UserRepositoryMock
+                    .Setup(x => x.ReadOneAsync(userId))
+                    .ReturnsAsync(default(User));
 
                 // Act
                 var result = await ServiceUnderTest.ReadOneAsync(userId);

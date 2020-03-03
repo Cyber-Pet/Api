@@ -5,7 +5,12 @@ VisualStudioVersion = 16.0.29709.97
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CyberPet.Api", "src\CyberPet.Api\CyberPet.Api.csproj", "{9E18DF9C-40DD-4F65-8271-A5814A7BF011}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CyberPet.Tests", "CyberPet.Tests\CyberPet.Tests.csproj", "{54AE02D1-4B6F-46E8-AA96-B9F092334AF9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CyberPet.Tests", "CyberPet.Tests\CyberPet.Tests.csproj", "{54AE02D1-4B6F-46E8-AA96-B9F092334AF9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{439058DA-04A8-4B2A-82EF-FC31356399C9}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
