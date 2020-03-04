@@ -4,7 +4,7 @@ using MongoDB.Driver;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace CyberPet.Api.Repositores
+namespace CyberPet.Api.Repositories
 {
     public class UserRepository : IUserRepository
     {
@@ -15,12 +15,13 @@ namespace CyberPet.Api.Repositores
         }
         public async Task<User> CreateAsync(User user)
         {
-            await _users.InsertOneAsync(user,);
+            await _users.InsertOneAsync(user);
             return user;
         }
 
         public Task<User> DeleteAsync(ObjectId id)
         {
+
             throw new System.NotImplementedException();
         }
 

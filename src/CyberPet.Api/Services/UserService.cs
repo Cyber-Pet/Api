@@ -1,9 +1,8 @@
 ﻿using CyberPet.Api.Models;
-using CyberPet.Api.Repositores;
+using CyberPet.Api.Repositories;
 using MongoDB.Bson;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace CyberPet.Api.Services
@@ -17,27 +16,27 @@ namespace CyberPet.Api.Services
         }
         public Task<User> CreateAsync(User user)
         {
-            throw new NotImplementedException();
+            throw new NotSupportedException();
         }
 
         public Task<User> DeleteAsync(ObjectId Id)
         {
-            throw new NotImplementedException();
+            throw new NotSupportedException();
         }
 
         public Task<IEnumerable<User>> ReadAllAsync()
         {
-            throw new NotImplementedException();
+            return _userRepository.ReadAllAsync();
         }
 
         public Task<User> ReadOneAsync(ObjectId Id)
         {
-            throw new NotImplementedException();
+            return _userRepository.ReadOneAsync(Id);
         }
 
         public Task<User> UpdateAsync(User user)
         {
-            throw new NotImplementedException();
+            throw new NotSupportedException();
         }
     }
 }

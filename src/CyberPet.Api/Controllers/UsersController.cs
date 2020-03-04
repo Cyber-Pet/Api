@@ -16,6 +16,7 @@ namespace CyberPet.Api.Controllers
         {
             _userService = userService ?? throw new ArgumentNullException(nameof(userService));
         }
+
         [HttpGet]
         [ProducesResponseType(typeof(IEnumerable<User>),200)]
         public async Task<IActionResult> ReadAllAsync()

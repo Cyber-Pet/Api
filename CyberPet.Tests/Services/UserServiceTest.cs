@@ -1,5 +1,5 @@
 ﻿using CyberPet.Api.Models;
-using CyberPet.Api.Repositores;
+using CyberPet.Api.Repositories;
 using MongoDB.Bson;
 using Moq;
 using System;
