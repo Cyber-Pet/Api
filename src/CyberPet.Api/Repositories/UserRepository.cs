@@ -9,9 +9,9 @@ namespace CyberPet.Api.Repositories
     public class UserRepository : IUserRepository
     {
         private readonly IMongoCollection<User> _users;
-        public UserRepository(CyberPetDatabase database)
+        public UserRepository(IMongoCollection<User> users)
         {
-            _users = database.Users;
+            _users = users;
         }
         public async Task<User> CreateAsync(User user)
         {
