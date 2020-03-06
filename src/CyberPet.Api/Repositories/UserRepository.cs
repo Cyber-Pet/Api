@@ -1,6 +1,5 @@
 ﻿using CyberPet.Api.Models;
-using MongoDB.Bson;
-using MongoDB.Driver;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -8,18 +7,17 @@ namespace CyberPet.Api.Repositories
 {
     public class UserRepository : IUserRepository
     {
-        private readonly IMongoCollection<User> _users;
-        public UserRepository(IMongoCollection<User> users)
+        private readonly CyberPetContext _context;
+        public UserRepository(CyberPetContext context)
         {
-            _users = users;
+            _context = context;
         }
         public async Task<User> CreateAsync(User user)
         {
-            await _users.InsertOneAsync(user);
-            return user;
+            throw new System.NotImplementedException();
         }
 
-        public Task<User> DeleteAsync(ObjectId id)
+        public Task<User> DeleteAsync(Guid id)
         {
 
             throw new System.NotImplementedException();
@@ -30,7 +28,7 @@ namespace CyberPet.Api.Repositories
             throw new System.NotImplementedException();
         }
 
-        public Task<User> ReadOneAsync(ObjectId id)
+        public Task<User> ReadOneAsync(Guid id)
         {
             throw new System.NotImplementedException();
         }

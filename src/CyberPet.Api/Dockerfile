@@ -7,7 +7,7 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/core/sdk:3.1-buster AS build
 WORKDIR /src
-COPY ["CyberPet.Api/CyberPet.Api.csproj", "CyberPet.Api/"]
+COPY ["src/CyberPet.Api/CyberPet.Api.csproj", "CyberPet.Api/"]
 RUN dotnet restore "CyberPet.Api/CyberPet.Api.csproj"
 COPY . .
 WORKDIR "/src/CyberPet.Api"

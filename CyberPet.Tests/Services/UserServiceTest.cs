@@ -23,6 +23,11 @@ namespace CyberPet.Api.Services
         public class ReadAllAsync : UserServiceTest
         {
             [Fact]
+            public async void aaaa()
+            {
+                Assert.True(true);
+            }
+            [Fact]
             public async Task Deve_retornar_todos_os_usuario()
             {
                 // Arrange
@@ -48,7 +53,7 @@ namespace CyberPet.Api.Services
             public async Task Deve_retornar_o_usuario_esperado()
             {
                 // Arrange
-                var userId = ObjectId.GenerateNewId();
+                var userId = Guid.NewGuid();
                 var expectedUser = new User { Id = userId, Name = "Gabriel Meyer", Email = "ghmeyer0@gmail.com" };
                 UserRepositoryMock
                     .Setup(x => x.ReadOneAsync(userId))
@@ -65,7 +70,7 @@ namespace CyberPet.Api.Services
             public async Task Deve_retornar_null_se_o_usuario_nao_existir()
             {
                 // Arrange
-                var userId = ObjectId.GenerateNewId();
+                var userId = Guid.NewGuid();
                 UserRepositoryMock
                     .Setup(x => x.ReadOneAsync(userId))
                     .ReturnsAsync(default(User));
@@ -102,7 +107,7 @@ namespace CyberPet.Api.Services
             public async Task Deve_deletar_e_retornar_o_usuario_especificado()
             {
                 // Arrange, Act, Assert
-                var exception = await Assert.ThrowsAsync<NotSupportedException>(() => ServiceUnderTest.DeleteAsync(ObjectId.Empty));
+                var exception = await Assert.ThrowsAsync<NotSupportedException>(() => ServiceUnderTest.DeleteAsync(Guid.Empty));
             }
         }
     }

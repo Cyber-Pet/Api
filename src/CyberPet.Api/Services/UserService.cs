@@ -19,7 +19,7 @@ namespace CyberPet.Api.Services
             throw new NotSupportedException();
         }
 
-        public Task<User> DeleteAsync(ObjectId Id)
+        public Task<User> DeleteAsync(Guid Id)
         {
             throw new NotSupportedException();
         }
@@ -29,7 +29,7 @@ namespace CyberPet.Api.Services
             return _userRepository.ReadAllAsync();
         }
 
-        public Task<User> ReadOneAsync(ObjectId Id)
+        public Task<User> ReadOneAsync(Guid Id)
         {
             return _userRepository.ReadOneAsync(Id);
         }
