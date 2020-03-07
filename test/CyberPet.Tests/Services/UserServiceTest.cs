@@ -1,6 +1,5 @@
 ﻿using CyberPet.Api.Models;
 using CyberPet.Api.Repositories;
-using MongoDB.Bson;
 using Moq;
 using System;
 using System.Collections.Generic;
@@ -22,11 +21,6 @@ namespace CyberPet.Api.Services
 
         public class ReadAllAsync : UserServiceTest
         {
-            [Fact]
-            public async void aaaa()
-            {
-                Assert.True(true);
-            }
             [Fact]
             public async Task Deve_retornar_todos_os_usuario()
             {

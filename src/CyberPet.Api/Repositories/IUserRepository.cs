@@ -11,7 +11,7 @@ namespace CyberPet.Api.Repositories
         Task<IEnumerable<User>> ReadAllAsync();
         Task<User> ReadOneAsync(Guid id);
         Task<User> CreateAsync(User user);
-        Task<User> UpdateAsync(User user);
+        Task<User> UpdateAsync(Guid id, User user);
         Task<User> DeleteAsync(Guid id);
     }
 }

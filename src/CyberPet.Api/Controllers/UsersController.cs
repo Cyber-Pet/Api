@@ -23,6 +23,6 @@ namespace CyberPet.Api.Controllers
         {
             var allUsers = await _userService.ReadAllAsync();
             return Ok(allUsers);
-        }
+    }
     }
 }

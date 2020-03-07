@@ -33,7 +33,7 @@ namespace CyberPet.Api.Repositories
             throw new System.NotImplementedException();
         }
 
-        public Task<User> UpdateAsync(User user)
+        public Task<User> UpdateAsync(Guid id, User user)
         {
             throw new System.NotImplementedException();
         }

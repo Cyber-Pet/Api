@@ -18,7 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\src\CyberPet.Api\CyberPet.Api.csproj" />
+    <ProjectReference Include="..\..\src\CyberPet.Api\CyberPet.Api.csproj" />
   </ItemGroup>
 
 </Project>
