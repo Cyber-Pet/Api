@@ -9,7 +9,7 @@ namespace CyberPet.Api.Models
         public CyberPetContext(DbContextOptions<CyberPetContext> options) : base(options)
         {
         }
-        public DbSet<User> Users { get; set; }
+      public DbSet<User> Users { get; set; }
         public DbSet<Pet> Pets { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

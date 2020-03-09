@@ -1,16 +1,16 @@
 #See https://aka.ms/containerfastmode to understand how Visual Studio uses this Dockerfile to build your images for faster debugging.
 
-FROM mcr.microsoft.com/dotnet/core/aspnet:3.1-alpine AS base
+FROM mcr.microsoft.com/dotnet/core/aspnet:3.1-buster-slim AS base
 WORKDIR /app
 EXPOSE 80
 EXPOSE 443
 
-FROM mcr.microsoft.com/dotnet/core/sdk:3.1-alpine AS build
+FROM mcr.microsoft.com/dotnet/core/sdk:3.1-buster AS build
 WORKDIR /src
-COPY ["src/CyberPet.Api/CyberPet.Api.csproj", "src/CyberPet.Api/"]
-RUN dotnet restore "src/CyberPet.Api/CyberPet.Api.csproj"
+COPY ["src/CyberPet.Api/CyberPet.Api.csproj", "CyberPet.Api/"]
+RUN dotnet restore "CyberPet.Api/CyberPet.Api.csproj"
 COPY . .
-WORKDIR "/src/src/CyberPet.Api"
+WORKDIR "/src/CyberPet.Api"
 RUN dotnet build "CyberPet.Api.csproj" -c Release -o /app/build
 
 FROM build AS publish
