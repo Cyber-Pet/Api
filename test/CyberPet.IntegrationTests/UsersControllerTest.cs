@@ -12,23 +12,17 @@ namespace CyberPet.IntegrationTests
        
         public class ReadAllAsync : UsersControllerTest
         {
-            protected override void ConfigureServices(IServiceCollection services)
-            {
-                services.AddDbContext<CyberPetContext>(options =>
-                    options.UseInMemoryDatabase(databaseName: "InMemoryCyberPetDb")
-                );
-
-            }
             [Fact]
 
-            public async Task deve_retornar_os_usuarios()
+            public async Task Deve_retornar_os_usuarios()
             {
-                var result = await Client.GetAsync("v1/users");
+                var result = await Client.GetAsync("api/Users");
                 result.EnsureSuccessStatusCode();
                 Assert.NotNull(result);
                 
                 var users = JsonConvert.DeserializeObject<User[]>(await result.Content.ReadAsStringAsync());
-                Assert.Equal(0, users.Length);
+                Assert.NotEmpty(users);
+                Assert.Equal(3, users.Length);
             }
         }
     }

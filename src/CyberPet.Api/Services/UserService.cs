@@ -34,14 +34,9 @@ namespace CyberPet.Api.Services
             return _userRepository.ReadOneAsync(Id);
         }
 
-        public Task<User> UpdateAsync(Guid id, User user)
+        public Task<User> UpdateAsync(User user)
         {
             throw new NotSupportedException();
-        }
-
-        public Task UpdateAsync(User user)
-        {
-            throw new NotImplementedException();
         }
     }
 }

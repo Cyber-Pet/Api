@@ -1,6 +1,9 @@
 ﻿using CyberPet.Api;
+using CyberPet.Api.Models;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.TestHost;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -31,8 +34,11 @@ namespace CyberPet.IntegrationTests
 
         protected virtual void ConfigureServices(IServiceCollection services)
         {
-
+            services.AddDbContext<CyberPetContext>( options => 
+                options.UseSqlite("Data Source=cyber.db")
+            );
         }
+
 
         #region IDisposabel Support
         private bool disposedValue = false;

@@ -10,7 +10,7 @@ namespace CyberPet.Api.Services
         Task<IEnumerable<User>> ReadAllAsync();
         Task<User> ReadOneAsync(Guid Id);
         Task<User> CreateAsync(User user);
-        Task<User> UpdateAsync(Guid id, User user);
+        Task<User> UpdateAsync(User user);
         Task<User> DeleteAsync(Guid Id);
 
     }

@@ -1,8 +1,5 @@
 ﻿using CyberPet.Api.Models;
-using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using Xunit;
@@ -13,21 +10,10 @@ namespace CyberPet.Api.Repositories
     {
         protected UserRepository RepositoryUnderTest { get; }
         protected CyberPetContext CyberPetDatabaseMock { get; }
-        private static Guid testId = Guid.NewGuid();
+        private static Guid testId = new Guid("bfbd39c6-76cb-4f49-8351-09ac4b64cb9c");
         public UserRepositoryTest()
         {
-            var options = new DbContextOptionsBuilder<CyberPetContext>()
-                         .UseInMemoryDatabase(databaseName: "InMemoryCyberPetDb")
-                         .Options;
-            CyberPetDatabaseMock = new CyberPetContext(options);
-            CyberPetDatabaseMock.Users.AddRangeAsync(new Collection<User>(new List<User>
-                {
-                    new User { Id = testId, Email = "ghmeyer0@gmail.com",   Name = "Gabriel Helko Meyer", Password = "ababa" },
-                    new User { Id = Guid.NewGuid(), Email = "gustavoreinertbsi@gmail.com",   Name = "Gustavo Reinert", Password = "ababa" },
-                    new User { Id = Guid.NewGuid(), Email = "rrschiavo@gmail.com",   Name = "Renato", Password = "ababa" }
-                }));
-            CyberPetDatabaseMock.SaveChangesAsync();
-
+            CyberPetDatabaseMock = SqliteCyberPetContextFactory.GetCyberPetContext();
             RepositoryUnderTest = new UserRepository(CyberPetDatabaseMock);
         }
         public class ReadAllAsync : UserRepositoryTest

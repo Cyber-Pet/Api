@@ -32,14 +32,13 @@ namespace CyberPet.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IUserRepository, UserRepository>();
+
             services.AddDbContext<CyberPetContext>(options =>
 
                 options.UseNpgsql(Configuration.GetConnectionString("CyberPetDatabase"))
             );  
-
-            services.AddSingleton<IUserService, UserService>();
-            services.AddSingleton<IUserRepository, UserRepository>();
-
             services.AddControllers();
             
             services.AddSwaggerGen(c =>
@@ -55,6 +54,7 @@ namespace CyberPet.Api
             {
                 app.UseDeveloperExceptionPage();
             }
+            UpdateDatabase(app);
             
             app.UseSwagger();
             app.UseSwaggerUI(c =>
@@ -71,6 +71,18 @@ namespace CyberPet.Api
             {
                 endpoints.MapControllers();
             });
+        }
+        private static void UpdateDatabase(IApplicationBuilder app)
+        {
+            using (var serviceScope = app.ApplicationServices
+                .GetRequiredService<IServiceScopeFactory>()
+                .CreateScope())
+            {
+                using (var context = serviceScope.ServiceProvider.GetService<CyberPetContext>())
+                {
+                    context.Database.Migrate();
+                }
+            }
         }
     }
 }
