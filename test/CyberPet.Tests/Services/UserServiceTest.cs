@@ -31,7 +31,7 @@ namespace CyberPet.Api.Services
                     new User { Name = "Renato Rezende", Email = "rrschiavo@gmail.com"}
                 });
                 UserRepositoryMock
-                    .Setup(x => x.ReadAllAsync())
+                    .Setup(x => x.ReadAll())
                     .ReturnsAsync(expectedUsers);
 
                 // Act

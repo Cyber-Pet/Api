@@ -26,7 +26,7 @@ namespace CyberPet.Api.Services
 
         public Task<IEnumerable<User>> ReadAllAsync()
         {
-            return _userRepository.ReadAllAsync();
+            return _userRepository.ReadAll();
         }
 
         public Task<User> ReadOneAsync(Guid Id)
@@ -37,6 +37,11 @@ namespace CyberPet.Api.Services
         public Task<User> UpdateAsync(Guid id, User user)
         {
             throw new NotSupportedException();
+        }
+
+        public Task UpdateAsync(User user)
+        {
+            throw new NotImplementedException();
         }
     }
 }

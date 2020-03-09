@@ -1,6 +1,8 @@
 ﻿using CyberPet.Api.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace CyberPet.Api.Repositories
@@ -14,28 +16,33 @@ namespace CyberPet.Api.Repositories
         }
         public async Task<User> CreateAsync(User user)
         {
-            throw new System.NotImplementedException();
+            var newUser = await _context.Users.AddAsync(user);
+            await _context.SaveChangesAsync();
+            return newUser.Entity;
         }
 
-        public Task<User> DeleteAsync(Guid id)
+        public async Task<User> DeleteAsync(Guid id)
         {
-
-            throw new System.NotImplementedException();
+            var deletedUser = _context.Users.Remove(await ReadOneAsync(id));
+            await _context.SaveChangesAsync();
+            return deletedUser.Entity;
         }
 
-        public Task<IEnumerable<User>> ReadAllAsync()
+        public async Task<IEnumerable<User>> ReadAll()
         {
-            throw new System.NotImplementedException();
+            return await _context.Users.ToListAsync();
         }
 
-        public Task<User> ReadOneAsync(Guid id)
+        public async Task<User> ReadOneAsync(Guid id)
         {
-            throw new System.NotImplementedException();
+            return await _context.Users.FindAsync(id);
         }
 
-        public Task<User> UpdateAsync(Guid id, User user)
+        public async Task<User> UpdateAsync(User user)
         {
-            throw new System.NotImplementedException();
+            var updatedUser = _context.Users.Update(user);
+            await _context.SaveChangesAsync();
+            return updatedUser.Entity;
         }
     }
 }

@@ -1,19 +1,35 @@
 ﻿using CyberPet.Api.Models;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using Newtonsoft.Json;
+using System.Threading.Tasks;
+using Xunit;
 
 namespace CyberPet.IntegrationTests
 {
     public class UsersControllerTest : BaseHttpTest
     {
+       
         public class ReadAllAsync : UsersControllerTest
         {
-            private IEnumerable<User> Users => new User[]
+            protected override void ConfigureServices(IServiceCollection services)
             {
-                new User { Email = "ghmeyer0@gmail.com", Name = "Gabriel Helko Meyer", Password = "aaa"}
-            };
+                services.AddDbContext<CyberPetContext>(options =>
+                    options.UseInMemoryDatabase(databaseName: "InMemoryCyberPetDb")
+                );
 
+            }
+            [Fact]
+
+            public async Task deve_retornar_os_usuarios()
+            {
+                var result = await Client.GetAsync("v1/users");
+                result.EnsureSuccessStatusCode();
+                Assert.NotNull(result);
+                
+                var users = JsonConvert.DeserializeObject<User[]>(await result.Content.ReadAsStringAsync());
+                Assert.Equal(0, users.Length);
+            }
         }
     }
 }

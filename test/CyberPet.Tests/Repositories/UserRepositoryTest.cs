@@ -13,19 +13,20 @@ namespace CyberPet.Api.Repositories
     {
         protected UserRepository RepositoryUnderTest { get; }
         protected CyberPetContext CyberPetDatabaseMock { get; }
+        private static Guid testId = Guid.NewGuid();
         public UserRepositoryTest()
         {
             var options = new DbContextOptionsBuilder<CyberPetContext>()
                          .UseInMemoryDatabase(databaseName: "InMemoryCyberPetDb")
                          .Options;
             CyberPetDatabaseMock = new CyberPetContext(options);
-
-            var users = new Collection<User>(new List<User>
+            CyberPetDatabaseMock.Users.AddRangeAsync(new Collection<User>(new List<User>
                 {
-                    new User { Id = Guid.NewGuid(), Email = "ghmeyer0@gmail.com",   Name = "Gabriel Helko Meyer", Password = "ababa" },
+                    new User { Id = testId, Email = "ghmeyer0@gmail.com",   Name = "Gabriel Helko Meyer", Password = "ababa" },
                     new User { Id = Guid.NewGuid(), Email = "gustavoreinertbsi@gmail.com",   Name = "Gustavo Reinert", Password = "ababa" },
                     new User { Id = Guid.NewGuid(), Email = "rrschiavo@gmail.com",   Name = "Renato", Password = "ababa" }
-                });
+                }));
+            CyberPetDatabaseMock.SaveChangesAsync();
 
             RepositoryUnderTest = new UserRepository(CyberPetDatabaseMock);
         }
@@ -35,20 +36,12 @@ namespace CyberPet.Api.Repositories
             public async Task Deve_retornar_todos_os_usuario()
             {
                 // Arrange
-                var id = Guid.NewGuid();
-                await CyberPetDatabaseMock.AddAsync(new User
-                {
-                    Id = id,
-                    Email = "email@exemplo.com.br",
-                    Name = "Exemplo Teste",
-                    Password = "senha_segura"
-                });
 
                 // Act
-                var result = await RepositoryUnderTest.ReadAllAsync();
+                var result = await RepositoryUnderTest.ReadAll();
 
                 // Assert
-                Assert.Equal(4, result.Count());
+                Assert.Equal(3, result.Count());
             }
         }
 
@@ -58,20 +51,12 @@ namespace CyberPet.Api.Repositories
             public async Task Deve_retornar_o_usuario_esperado()
             {
                 // Arrange
-                var id = Guid.NewGuid();
-                await CyberPetDatabaseMock.AddAsync(new User
-                {
-                    Id = id,
-                    Email = "email@exemplo.com.br",
-                    Name = "Exemplo Teste",
-                    Password = "senha_segura"
-                });
 
                 // Act
-                var result = await RepositoryUnderTest.ReadOneAsync(id);
+                var result = await RepositoryUnderTest.ReadOneAsync(testId);
 
                 // Assert
-                Assert.Equal("email@exemplo.com.br", result.Email);
+                Assert.Equal("ghmeyer0@gmail.com", result.Email);
             }
 
             [Fact]
@@ -104,8 +89,7 @@ namespace CyberPet.Api.Repositories
                 var result = await RepositoryUnderTest.CreateAsync(newUser);
 
                 // Assert
-                Guid guidResult;
-
+                Assert.NotNull(result);
                 Assert.True(Utils.IsGuid(result.Id));
             }
         }
@@ -124,16 +108,42 @@ namespace CyberPet.Api.Repositories
                     Name = "Exemplo Teste",
                     Password = "senha_segura"
                 };
-                await CyberPetDatabaseMock.AddAsync(updatedUser);
+                await CyberPetDatabaseMock.Users.AddAsync(updatedUser);
+                await CyberPetDatabaseMock.SaveChangesAsync();
 
                 updatedUser.Name = "Nome Alternativo";
 
                 // Act
-                var result = await RepositoryUnderTest.UpdateAsync(id, updatedUser);
+                var result = await RepositoryUnderTest.UpdateAsync(updatedUser);
 
                 // Assert
                 Assert.Equal("Nome Alternativo", result.Name);
             }
+        }
+
+        public class DeleteAsync : UserRepositoryTest
+        {
+            [Fact]
+            public async Task Deve_remover_o_usuario()
+            {
+                // Arrange
+                var id = Guid.NewGuid();
+                var deletedUser = new User
+                {
+                    Id = id,
+                    Email = "email@exemplo.com.br",
+                    Name = "Exemplo Teste",
+                    Password = "senha_segura"
+                };
+                await CyberPetDatabaseMock.AddAsync(deletedUser);
+
+                // Act
+                var result = await RepositoryUnderTest.DeleteAsync(id);
+
+                // Assert
+                Assert.Equal(deletedUser, result);
+            }
+
         }
 
     }

@@ -5,6 +5,8 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using CyberPet.Api.Models;
+using CyberPet.Api.Repositories;
+using CyberPet.Api.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -33,7 +35,11 @@ namespace CyberPet.Api
             services.AddDbContext<CyberPetContext>(options =>
 
                 options.UseNpgsql(Configuration.GetConnectionString("CyberPetDatabase"))
-            );
+            );  
+
+            services.AddSingleton<IUserService, UserService>();
+            services.AddSingleton<IUserRepository, UserRepository>();
+
             services.AddControllers();
             
             services.AddSwaggerGen(c =>

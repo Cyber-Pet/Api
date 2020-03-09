@@ -8,10 +8,10 @@ namespace CyberPet.Api.Repositories
 {
     public interface IUserRepository
     {
-        Task<IEnumerable<User>> ReadAllAsync();
+        Task<IEnumerable<User>> ReadAll();
         Task<User> ReadOneAsync(Guid id);
         Task<User> CreateAsync(User user);
-        Task<User> UpdateAsync(Guid id, User user);
+        Task<User> UpdateAsync(User user);
         Task<User> DeleteAsync(Guid id);
     }
 }
