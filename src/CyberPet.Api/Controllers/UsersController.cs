@@ -1,5 +1,5 @@
 ﻿using CyberPet.Api.Models;
-using CyberPet.Api.Services;
+using CyberPet.Api.Services.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -50,7 +50,7 @@ namespace CyberPet.Api.Controllers
             var createdUser = await _userService.CreateAsync(userToCreate);
             return Ok(createdUser);
         }
-        
+
         [HttpDelete("{id:guid}")]
         [ProducesResponseType(typeof(User), StatusCodes.Status200OK)]
         public async Task<IActionResult> DeleteAsync(Guid id)

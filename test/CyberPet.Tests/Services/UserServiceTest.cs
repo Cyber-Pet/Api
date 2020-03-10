@@ -1,5 +1,5 @@
 ﻿using CyberPet.Api.Models;
-using CyberPet.Api.Repositories;
+using CyberPet.Api.Repositories.Interfaces;
 using Moq;
 using System;
 using System.Collections.Generic;

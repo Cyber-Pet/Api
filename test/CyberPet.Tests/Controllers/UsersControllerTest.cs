@@ -1,5 +1,5 @@
 ﻿using CyberPet.Api.Models;
-using CyberPet.Api.Services;
+using CyberPet.Api.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
 using System;
@@ -92,7 +92,6 @@ namespace CyberPet.Api.Controllers
 
         public class UpdateAsync : UsersControllerTest
         {
-            [Fact]
         }
     }
 }

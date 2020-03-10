@@ -1,8 +1,10 @@
 ﻿using CyberPet.Api.Models;
+using CyberPet.Api.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace CyberPet.Api.Repositories
@@ -36,6 +38,11 @@ namespace CyberPet.Api.Repositories
         public async Task<User> ReadOneAsync(Guid id)
         {
             return await _context.Users.FindAsync(id);
+        }
+
+        public async Task<User> ReadOneBy(Expression<Func<User, bool>> condition)
+        {
+            return await _context.Users.FirstOrDefaultAsync(condition);
         }
 
         public async Task<User> UpdateAsync(User user)

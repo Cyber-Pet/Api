@@ -13,5 +13,5 @@ namespace CyberPet.Api.Models
         public string Email { get; set; }
         public string Password { get; set; }
         public Pet Pet { get; set; }
-    }   
+    }
 }

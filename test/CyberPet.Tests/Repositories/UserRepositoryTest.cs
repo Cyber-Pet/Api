@@ -1,4 +1,5 @@
 ﻿using CyberPet.Api.Models;
+using CyberPet.Api.Utils;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
@@ -76,7 +77,7 @@ namespace CyberPet.Api.Repositories
 
                 // Assert
                 Assert.NotNull(result);
-                Assert.True(Utils.IsGuid(result.Id));
+                Assert.True(StringUtils.IsGuid(result.Id));
             }
         }
 

@@ -1,8 +1,10 @@
 ﻿using CyberPet.Api.Models;
-using CyberPet.Api.Repositories;
-using MongoDB.Bson;
+using CyberPet.Api.Repositories.Interfaces;
+using CyberPet.Api.Services.Interfaces;
+using CyberPet.Api.Utils;
 using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace CyberPet.Api.Services
@@ -16,12 +18,15 @@ namespace CyberPet.Api.Services
         }
         public Task<User> CreateAsync(User user)
         {
-            throw new NotSupportedException();
+            user.Password = SecurityUtils.EncryptPassword(user.Password);
+            var newUser = _userRepository.CreateAsync(user);
+            return newUser;
         }
 
         public Task<User> DeleteAsync(Guid Id)
         {
-            throw new NotSupportedException();
+            var deletedUser = _userRepository.DeleteAsync(Id);
+            return deletedUser;
         }
 
         public Task<IEnumerable<User>> ReadAllAsync()
@@ -32,6 +37,11 @@ namespace CyberPet.Api.Services
         public Task<User> ReadOneAsync(Guid Id)
         {
             return _userRepository.ReadOneAsync(Id);
+        }
+
+        public async Task<User> ReadOneBy(Expression<Func<User, bool>> expression)
+        {
+            return await _userRepository.ReadOneBy(expression);
         }
 
         public Task<User> UpdateAsync(User user)
