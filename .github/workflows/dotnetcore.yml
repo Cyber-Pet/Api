@@ -6,7 +6,7 @@ on:
     - master
 
 jobs:
-  build_icolors:
+  build_cyberpet:
     runs-on: ubuntu-16.04
     steps:
     - uses: actions/checkout@v1
@@ -17,5 +17,5 @@ jobs:
       run: |
         cd ./src/CyberPet.Api
         docker login --username=_ --password=$HEROKU_API_KEY registry.heroku.com
-        heroku container:push web -a $APP_NAME --context-path ..\..\.
+        heroku container:push web -a $APP_NAME --context-path ../../.
         heroku container:release web -a $APP_NAME
