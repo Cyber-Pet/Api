@@ -19,4 +19,4 @@ RUN dotnet publish "CyberPet.Api.csproj" -c Release -o /app/publish
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "CyberPet.Api.dll"]
+CMD ASPNETCORE_URLS=http://*:$PORT dotnet CyberPet.Api.dll
