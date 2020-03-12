@@ -37,11 +37,8 @@ namespace CyberPet.Api.Controllers
         [ProducesResponseType(StatusCodes.Status409Conflict)]
         public async Task<IActionResult> Register([FromBody] UserResgister userResgister)
         {
-            if (true)
-            {
-                return StatusCode(409, $"Usuario já cadastrado");
-            }
             var user = await _authService.Register(userResgister);
+            if (user == null) return StatusCode(409, $"Usuario já cadastrado");
             return Ok(user);
         }
     }

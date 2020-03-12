@@ -14,6 +14,5 @@ namespace CyberPet.Api.Services.Interfaces
         Task<User> CreateAsync(User user);
         Task<User> UpdateAsync(User user);
         Task<User> DeleteAsync(Guid Id);
-
     }
 }

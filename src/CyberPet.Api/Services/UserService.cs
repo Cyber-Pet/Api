@@ -16,10 +16,13 @@ namespace CyberPet.Api.Services
         {
             _userRepository = userRepository ?? throw new ArgumentNullException(nameof(userRepository));
         }
-        public Task<User> CreateAsync(User user)
+        public async Task<User> CreateAsync(User user)
         {
+            if (await ExistUserWithSameEmail(user.Email)) 
+                return null;
+                
             user.Password = SecurityUtils.EncryptPassword(user.Password);
-            var newUser = _userRepository.CreateAsync(user);
+            var newUser = await _userRepository.CreateAsync(user);
             return newUser;
         }
 
@@ -47,6 +50,11 @@ namespace CyberPet.Api.Services
         public Task<User> UpdateAsync(User user)
         {
             throw new NotSupportedException();
+        }
+        private async Task<bool> ExistUserWithSameEmail(string email)
+        {
+            var user =  await _userRepository.ReadOneBy(x => x.Email == email);
+            return user != null;
         }
     }
 }
