@@ -29,7 +29,7 @@ namespace CyberPet.Api.Controllers
             {
                 return Ok(userToken);
             }
-            return Ok("Usuario ou Senha Invalido");
+            return Unauthorized();
         }
 
         [HttpPost("register")]
