@@ -1,5 +1,6 @@
 using AutoMapper;
 using CyberPet.Api.Models;
+using CyberPet.Api.Models.Interfaces;
 using CyberPet.Api.Repositories;
 using CyberPet.Api.Repositories.Interfaces;
 using CyberPet.Api.Services;
@@ -32,6 +33,7 @@ namespace CyberPet.Api
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IAuthService, AuthService>();
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<INotifier, Notifier>();
 
             services.AddAutoMapper(typeof(CyberPetProfile));
             services.AddDbContext<CyberPetContext>(options =>

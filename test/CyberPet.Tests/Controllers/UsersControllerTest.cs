@@ -20,7 +20,7 @@ namespace CyberPet.Api.Controllers
         }
 
 
-        public class ReadAllAsync : UsersControllerTest
+        public class GetAllAsync : UsersControllerTest
         {
             [Fact]
             public async Task Should_return_OkObjectResult_with_users()
@@ -32,11 +32,11 @@ namespace CyberPet.Api.Controllers
                     new User { Name = "Renato Rezende", Email = "rrschiavo@gmail.com"}
                 };
                 UserServiceMock
-                    .Setup(x => x.ReadAllAsync())
+                    .Setup(x => x.GetAllAsync())
                     .ReturnsAsync(expectedUsers);
 
                 //Act
-                var result = await ControllerUnderTest.ReadAllAsync();
+                var result = await ControllerUnderTest.GetAllAsync();
 
                 //Assert
                 var okResult = Assert.IsType<OkObjectResult>(result);
@@ -44,7 +44,7 @@ namespace CyberPet.Api.Controllers
             }
         }
 
-        public class ReadOneAsync : UsersControllerTest
+        public class GetByIdAsync : UsersControllerTest
         {
             [Fact]
             public async Task Deve_retornar_OkObjectResult_com_o_usuario_esperado()
@@ -59,11 +59,11 @@ namespace CyberPet.Api.Controllers
                     Password = "aaaaa"
                 };
                 UserServiceMock
-                    .Setup(x => x.ReadOneAsync(id))
+                    .Setup(x => x.GetByIdAsync(id))
                     .ReturnsAsync(expectedUser);
 
                 // Act
-                var result = await ControllerUnderTest.ReadOneAsync(id);
+                var result = await ControllerUnderTest.GetByIdAsync(id);
 
                 // Assert
                 var okResult = Assert.IsType<OkObjectResult>(result);
@@ -78,11 +78,11 @@ namespace CyberPet.Api.Controllers
                 Guid id = Guid.NewGuid();
                 User expectedValue = null;
                 UserServiceMock
-                    .Setup(x => x.ReadOneAsync(id))
+                    .Setup(x => x.GetByIdAsync(id))
                     .ReturnsAsync(expectedValue);
 
                 // Act
-                var result = await ControllerUnderTest.ReadOneAsync(id);
+                var result = await ControllerUnderTest.GetByIdAsync(id);
 
                 // Assert
                 var okResult = Assert.IsType<OkObjectResult>(result);

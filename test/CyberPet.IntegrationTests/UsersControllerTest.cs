@@ -10,7 +10,7 @@ namespace CyberPet.IntegrationTests
     public class UsersControllerTest : BaseHttpTest
     {
        
-        public class ReadAllAsync : UsersControllerTest
+        public class GetAllAsync : UsersControllerTest
         {
             [Fact]
 

@@ -1,4 +1,5 @@
 ﻿using CyberPet.Api.Models;
+using CyberPet.Api.Models.Interfaces;
 using CyberPet.Api.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -12,30 +13,18 @@ namespace CyberPet.Api.Repositories
     public class UserRepository : IUserRepository
     {
         private readonly CyberPetContext _context;
-        public UserRepository(CyberPetContext context)
+        private readonly INotifier notifier;
+        public UserRepository(CyberPetContext context, INotifier notifier)
         {
             _context = context;
+            this.notifier = notifier;
         }
-        public async Task<User> CreateAsync(User user)
-        {
-            var newUser = await _context.Users.AddAsync(user);
-            await _context.SaveChangesAsync();
-            return newUser.Entity;
-        }
-
-        public async Task<User> DeleteAsync(Guid id)
-        {
-            var deletedUser = _context.Users.Remove(await ReadOneAsync(id));
-            await _context.SaveChangesAsync();
-            return deletedUser.Entity;
-        }
-
-        public async Task<IEnumerable<User>> ReadAll()
+        public async Task<IEnumerable<User>> GetAllAsync()
         {
             return await _context.Users.ToListAsync();
         }
 
-        public async Task<User> ReadOneAsync(Guid id)
+        public async Task<User> GetByIdAsync(Guid id)
         {
             return await _context.Users.FindAsync(id);
         }
@@ -44,12 +33,32 @@ namespace CyberPet.Api.Repositories
         {
             return await _context.Users.FirstOrDefaultAsync(condition);
         }
-
-        public async Task<User> UpdateAsync(User user)
+        public async Task<int> CreateAsync(User user)
         {
-            var updatedUser = _context.Users.Update(user);
-            await _context.SaveChangesAsync();
-            return updatedUser.Entity;
+            await _context.Users.AddAsync(user);
+            return await _context.SaveChangesAsync();
+            
+        }
+
+        public async Task<int> DeleteAsync(Guid id)
+        {
+            User user = await GetByIdAsync(id);
+            if (user != null)
+            {
+                _context.Users.Remove(user);
+                return await _context.SaveChangesAsync();
+            }
+            else
+            {
+                notifier.Add(new Notification("Usuario não encontrado"));
+            }
+            return -1;
+        }       
+
+        public async Task<int> UpdateAsync(User user)
+        {
+            _context.Users.Update(user);
+            return await _context.SaveChangesAsync();
         }
     }
 }

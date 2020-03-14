@@ -1,4 +1,5 @@
 ﻿using CyberPet.Api.Models;
+using CyberPet.Api.Models.Interfaces;
 using CyberPet.Api.Utils;
 using System;
 using System.Linq;
@@ -11,13 +12,15 @@ namespace CyberPet.Api.Repositories
     {
         protected UserRepository RepositoryUnderTest { get; }
         protected CyberPetContext CyberPetDatabaseMock { get; }
+        private readonly INotifier notifierMock;
         private static Guid testId = new Guid("bfbd39c6-76cb-4f49-8351-09ac4b64cb9c");
         public UserRepositoryTest()
         {
             CyberPetDatabaseMock = SqliteCyberPetContextFactory.GetCyberPetContext();
-            RepositoryUnderTest = new UserRepository(CyberPetDatabaseMock);
+            notifierMock = new Notifier();
+            RepositoryUnderTest = new UserRepository(CyberPetDatabaseMock, notifierMock);
         }
-        public class ReadAllAsync : UserRepositoryTest
+        public class GetAllAsync : UserRepositoryTest
         {
             [Fact]
             public async Task Deve_retornar_todos_os_usuario()
@@ -25,14 +28,14 @@ namespace CyberPet.Api.Repositories
                 // Arrange
 
                 // Act
-                var result = await RepositoryUnderTest.ReadAll();
+                var result = await RepositoryUnderTest.GetAllAsync();
 
                 // Assert
                 Assert.Equal(3, result.Count());
             }
         }
 
-        public class ReadOneAsync : UserRepositoryTest
+        public class GetByIdAsync : UserRepositoryTest
         {
             [Fact]
             public async Task Deve_retornar_o_usuario_esperado()
@@ -40,7 +43,7 @@ namespace CyberPet.Api.Repositories
                 // Arrange
 
                 // Act
-                var result = await RepositoryUnderTest.ReadOneAsync(testId);
+                var result = await RepositoryUnderTest.GetByIdAsync(testId);
 
                 // Assert
                 Assert.Equal("ghmeyer0@gmail.com", result.Email);
@@ -53,7 +56,7 @@ namespace CyberPet.Api.Repositories
                 var id = Guid.NewGuid();
 
                 // Act 
-                var result = await RepositoryUnderTest.ReadOneAsync(id);
+                var result = await RepositoryUnderTest.GetByIdAsync(id);
 
                 // Assert
                 Assert.Null(result);
@@ -76,8 +79,7 @@ namespace CyberPet.Api.Repositories
                 var result = await RepositoryUnderTest.CreateAsync(newUser);
 
                 // Assert
-                Assert.NotNull(result);
-                Assert.True(StringUtils.IsGuid(result.Id));
+                Assert.Equal(1, result);
             }
         }
 
@@ -104,7 +106,7 @@ namespace CyberPet.Api.Repositories
                 var result = await RepositoryUnderTest.UpdateAsync(updatedUser);
 
                 // Assert
-                Assert.Equal("Nome Alternativo", result.Name);
+                Assert.Equal(1, result);
             }
         }
 
@@ -128,7 +130,7 @@ namespace CyberPet.Api.Repositories
                 var result = await RepositoryUnderTest.DeleteAsync(id);
 
                 // Assert
-                Assert.Equal(deletedUser, result);
+                Assert.Equal(1, result);
             }
 
         }

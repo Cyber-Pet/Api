@@ -19,7 +19,7 @@ namespace CyberPet.Api.Services
             ServiceUnderTest = new UserService(UserRepositoryMock.Object);
         }
 
-        public class ReadAllAsync : UserServiceTest
+        public class GetAllAsync : UserServiceTest
         {
             [Fact]
             public async Task Deve_retornar_todos_os_usuario()
@@ -31,17 +31,17 @@ namespace CyberPet.Api.Services
                     new User { Name = "Renato Rezende", Email = "rrschiavo@gmail.com"}
                 });
                 UserRepositoryMock
-                    .Setup(x => x.ReadAll())
+                    .Setup(x => x.GetAllAsync())
                     .ReturnsAsync(expectedUsers);
 
                 // Act
-                var result = await ServiceUnderTest.ReadAllAsync();
+                var result = await ServiceUnderTest.GetAllAsync();
 
                 // Assert
                 Assert.Same(expectedUsers, result);
             }
         }
-        public class ReadOneAsync : UserServiceTest
+        public class GetByIdAsync : UserServiceTest
         {
             [Fact]
             public async Task Deve_retornar_o_usuario_esperado()
@@ -50,11 +50,11 @@ namespace CyberPet.Api.Services
                 var userId = Guid.NewGuid();
                 var expectedUser = new User { Id = userId, Name = "Gabriel Meyer", Email = "ghmeyer0@gmail.com" };
                 UserRepositoryMock
-                    .Setup(x => x.ReadOneAsync(userId))
+                    .Setup(x => x.GetByIdAsync(userId))
                     .ReturnsAsync(expectedUser);
 
                 // Act
-                var result = await ServiceUnderTest.ReadOneAsync(userId);
+                var result = await ServiceUnderTest.GetByIdAsync(userId);
 
                 // Assert
                 Assert.Same(expectedUser, result);
@@ -66,11 +66,11 @@ namespace CyberPet.Api.Services
                 // Arrange
                 var userId = Guid.NewGuid();
                 UserRepositoryMock
-                    .Setup(x => x.ReadOneAsync(userId))
+                    .Setup(x => x.GetByIdAsync(userId))
                     .ReturnsAsync(default(User));
 
                 // Act
-                var result = await ServiceUnderTest.ReadOneAsync(userId);
+                var result = await ServiceUnderTest.GetByIdAsync(userId);
 
                 // Assert
                 Assert.Null(result);

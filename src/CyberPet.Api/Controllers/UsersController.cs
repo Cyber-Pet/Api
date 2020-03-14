@@ -21,17 +21,17 @@ namespace CyberPet.Api.Controllers
 
         [HttpGet]
         [ProducesResponseType(typeof(IEnumerable<User>), StatusCodes.Status200OK)]
-        public async Task<IActionResult> ReadAllAsync()
+        public async Task<IActionResult> GetAllAsync()
         {
-            var allUsers = await _userService.ReadAllAsync();
+            var allUsers = await _userService.GetAllAsync();
             return Ok(allUsers);
         }
 
         [HttpGet("{id:guid}")]
         [ProducesResponseType(typeof(User), StatusCodes.Status200OK)]
-        public async Task<IActionResult> ReadOneAsync(Guid id)
+        public async Task<IActionResult> GetByIdAsync(Guid id)
         {
-            var user = await _userService.ReadOneAsync(id);
+            var user = await _userService.GetByIdAsync(id);
             return Ok(user);
         }
 

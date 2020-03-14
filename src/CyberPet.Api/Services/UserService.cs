@@ -22,24 +22,23 @@ namespace CyberPet.Api.Services
                 return null;
                 
             user.Password = SecurityUtils.EncryptPassword(user.Password);
-            var newUser = await _userRepository.CreateAsync(user);
-            return newUser;
+            await _userRepository.CreateAsync(user);
+            return user;
         }
 
-        public Task<User> DeleteAsync(Guid Id)
+        public async Task<int> DeleteAsync(Guid Id)
         {
-            var deletedUser = _userRepository.DeleteAsync(Id);
-            return deletedUser;
+            return await _userRepository.DeleteAsync(Id); ;
         }
 
-        public Task<IEnumerable<User>> ReadAllAsync()
+        public Task<IEnumerable<User>> GetAllAsync()
         {
-            return _userRepository.ReadAll();
+            return _userRepository.GetAllAsync();
         }
 
-        public Task<User> ReadOneAsync(Guid Id)
+        public Task<User> GetByIdAsync(Guid Id)
         {
-            return _userRepository.ReadOneAsync(Id);
+            return _userRepository.GetByIdAsync(Id);
         }
 
         public async Task<User> ReadOneBy(Expression<Func<User, bool>> expression)
@@ -47,7 +46,7 @@ namespace CyberPet.Api.Services
             return await _userRepository.ReadOneBy(expression);
         }
 
-        public Task<User> UpdateAsync(User user)
+        public Task<int> UpdateAsync(User user)
         {
             throw new NotSupportedException();
         }

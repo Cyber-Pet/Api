@@ -41,7 +41,8 @@ namespace CyberPet.Api.Controllers
         {
             var user = await _authService.Register(userResgister);
             if (user == null) return StatusCode(409, $"Usuario já cadastrado");
-            return Created("https://cyber-pet.herokuapp.com/users/" + user.Id, user);
+            var response = new { Message = "Usurio Cadastrado Com Sucesso", Data = user };
+            return Created("", response);
         }
     }
 }
