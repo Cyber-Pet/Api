@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace CyberPet.Api.Models
 {
@@ -21,7 +23,7 @@ namespace CyberPet.Api.Models
             );
 
         }
-        public override int SaveChanges()
+        public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default(CancellationToken))
         {
             var entries = ChangeTracker
                 .Entries()
@@ -38,7 +40,7 @@ namespace CyberPet.Api.Models
                     ((CoreModel)entityEntry.Entity).CreateAt = DateTime.Now;
                 }
             }
-            return base.SaveChanges();
+            return await base.SaveChangesAsync();
         }
     }
 }
