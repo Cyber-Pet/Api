@@ -25,19 +25,19 @@ namespace CyberPet.Api.Services
             _configuration = configuration;
         }
 
-        public async Task<Token> Login(Login userLogin)
+        public async Task<TokenViewModel> Login(LoginViewModel userLogin)
         {
             var user = await _userService.ReadOneBy(x => x.Email == userLogin.Email && x.Password == SecurityUtils.EncryptPassword(userLogin.Password));
             if (user == null)
             {
-                return _mapper.Map<Token>(user);
+                return _mapper.Map<TokenViewModel>(user);
             }
-            Token userToken = _mapper.Map<Token>(user);
+            TokenViewModel userToken = _mapper.Map<TokenViewModel>(user);
             userToken.token = GenerateToken(user);
             return userToken;
         }
 
-        public async Task<User> Register(UserResgister userResgister)
+        public async Task<User> Register(UserResgisterViewModel userResgister)
         {
             var newUser = await _userService.CreateAsync(_mapper.Map<User>(userResgister));
             return newUser;

@@ -1,16 +1,10 @@
-﻿using MongoDB.Bson.Serialization.Attributes;
-using System;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace CyberPet.Api.Models
 {
-    public class Pet
+    public class Pet : CoreModel
     {
-        [BsonId]
-        public Guid Id { get; set; }
+        [Required]
         public string PetName { get; set; }
-        [BsonDateTimeOptions]
-        public DateTime UpdatedOn { get; set; } = DateTime.Now;
-
-
     }
 }

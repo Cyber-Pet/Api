@@ -8,8 +8,8 @@ namespace CyberPet.Api
     {
         public CyberPetProfile()
         {
-            CreateMap<User, Token>();
-            CreateMap<UserResgister, User>();
+            CreateMap<User, TokenViewModel>();
+            CreateMap<UserResgisterViewModel, User>();
         }
     }
 }

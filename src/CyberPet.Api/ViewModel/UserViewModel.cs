@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace CyberPet.Api.Models.Interfaces
+namespace CyberPet.Api.ViewModel
 {
-    public interface ICoreModel
+    public class UserViewModel
     {
-        Guid Id { get; set; }
     }
 }

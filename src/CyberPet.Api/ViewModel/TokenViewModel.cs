@@ -2,7 +2,7 @@
 
 namespace CyberPet.Api.ViewModel
 {
-    public class Token
+    public class TokenViewModel
     {
         public Guid Id { get; set; }
         public string Email { get; set; }

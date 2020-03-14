@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
+using System.Linq;
 
 namespace CyberPet.Api.Models
 {
@@ -19,6 +20,25 @@ namespace CyberPet.Api.Models
                 new User { Id = Guid.Parse("3e3a3c48-3939-49d3-8ada-81936239a609"), Email = "rrschiavo@gmail.com", Name = "Renato Schiavo", Password = "4edc2113d0937fcc5f79c2f3af0a6aa30fa8fb545bfed7d06693d2c909399600" }
             );
 
+        }
+        public override int SaveChanges()
+        {
+            var entries = ChangeTracker
+                .Entries()
+                .Where(e => e.Entity is CoreModel && (
+                        e.State == EntityState.Added
+                        || e.State == EntityState.Modified));
+
+            foreach (var entityEntry in entries)
+            {
+                ((CoreModel)entityEntry.Entity).UpdateAt = DateTime.Now;
+
+                if (entityEntry.State == EntityState.Added)
+                {
+                    ((CoreModel)entityEntry.Entity).CreateAt = DateTime.Now;
+                }
+            }
+            return base.SaveChanges();
         }
     }
 }

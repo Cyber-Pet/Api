@@ -21,9 +21,9 @@ namespace CyberPet.Api.Controllers
 
         [AllowAnonymous]
         [HttpPost("login")]
-        [ProducesResponseType(typeof(Token), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(TokenViewModel), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-        public async Task<IActionResult> Login([FromBody]Login login)
+        public async Task<IActionResult> Login([FromBody]LoginViewModel login)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
             var userToken = await _authService.Login(login);
@@ -37,7 +37,7 @@ namespace CyberPet.Api.Controllers
         [HttpPost("register")]
         [ProducesResponseType(typeof(User),StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status409Conflict)]
-        public async Task<IActionResult> Register([FromBody] UserResgister userResgister)
+        public async Task<IActionResult> Register([FromBody] UserResgisterViewModel userResgister)
         {
             var user = await _authService.Register(userResgister);
             if (user == null) return StatusCode(409, $"Usuario já cadastrado");
