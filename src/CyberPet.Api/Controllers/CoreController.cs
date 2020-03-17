@@ -15,5 +15,17 @@ namespace CyberPet.Api.Controllers
         public CoreController(INotifier notifier) => _notifier = notifier ?? throw new ArgumentNullException(nameof(notifier));
         
         protected bool OperationValid() => !_notifier.HaveNotification();
+
+        protected ActionResult CustomResponse(object json)
+        {
+            if (OperationValid())
+            {
+                return Ok(json);
+            }
+            else
+            {
+                return BadRequest(_notifier.GetNotifications().Select(x => x.Message));
+            }
+        }
     }
 }

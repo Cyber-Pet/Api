@@ -10,7 +10,7 @@ namespace CyberPet.Api.Repositories.Interfaces
     {
         Task<IEnumerable<User>> GetAllAsync();
         Task<User> GetByIdAsync(Guid id);
-        Task<User> ReadOneBy(Expression<Func<User, bool>> expression);
+        Task<User> GetOneBy(Expression<Func<User, bool>> expression);
         Task<int> CreateAsync(User user);
         Task<int> UpdateAsync(User user);
         Task<int> DeleteAsync(Guid id);

@@ -13,29 +13,47 @@ namespace CyberPet.Api.Repositories
     public class UserRepository : IUserRepository
     {
         private readonly CyberPetContext _context;
-        private readonly INotifier notifier;
+        private readonly INotifier _notifier;
         public UserRepository(CyberPetContext context, INotifier notifier)
         {
             _context = context;
-            this.notifier = notifier;
+            this._notifier = notifier;
         }
         public async Task<IEnumerable<User>> GetAllAsync()
         {
-            return await _context.Users.ToListAsync();
+            var users = await _context.Users.ToListAsync();
+            if (!users.Any())
+            {
+                _notifier.Add(new Notification("Não existe Usuarios Cadastrados"));
+                return null;
+            }
+            return users;
         }
 
         public async Task<User> GetByIdAsync(Guid id)
         {
-            return await _context.Users.FindAsync(id);
+            User user = await _context.Users.FindAsync(id);
+            if (user == null)
+            {
+                _notifier.Add(new Notification("Usuario não encontrado"));
+                return null;
+            }
+            return user;
         }
 
-        public async Task<User> ReadOneBy(Expression<Func<User, bool>> condition)
+        public async Task<User> GetOneBy(Expression<Func<User, bool>> condition)
         {
             return await _context.Users.FirstOrDefaultAsync(condition);
         }
-        public async Task<int> CreateAsync(User user)
+        public async Task<int> CreateAsync(User newUser)
         {
-            await _context.Users.AddAsync(user);
+            var user = await GetOneBy(x => x.Email == newUser.Email);
+            if (user != null)
+            {
+                _notifier.Add(new Notification("Já existe um usuario cadastrado com este E-Mail"));
+                return -1;
+            }
+            await _context.Users.AddAsync(newUser);
             return await _context.SaveChangesAsync();
             
         }
@@ -43,16 +61,15 @@ namespace CyberPet.Api.Repositories
         public async Task<int> DeleteAsync(Guid id)
         {
             User user = await GetByIdAsync(id);
-            if (user != null)
+            if (user == null)
             {
-                _context.Users.Remove(user);
-                return await _context.SaveChangesAsync();
+                _notifier.Add(new Notification("Usuario não encontrado"));
+                return -1;
             }
-            else
-            {
-                notifier.Add(new Notification("Usuario não encontrado"));
-            }
-            return -1;
+            _context.Users.Remove(user);
+            return await _context.SaveChangesAsync();
+
+            
         }       
 
         public async Task<int> UpdateAsync(User user)

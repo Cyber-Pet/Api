@@ -1,4 +1,5 @@
 ﻿using CyberPet.Api.Models;
+using CyberPet.Api.Models.Interfaces;
 using CyberPet.Api.Services.Interfaces;
 using CyberPet.Api.ViewModel;
 using Microsoft.AspNetCore.Authorization;
@@ -10,11 +11,10 @@ using System.Threading.Tasks;
 namespace CyberPet.Api.Controllers
 {
     [Route("api/[controller]")]
-    [ApiController]
-    public class AuthController : ControllerBase
+    public class AuthController : CoreController
     {
         private readonly IAuthService _authService;
-        public AuthController(IAuthService authService)
+        public AuthController(IAuthService authService, INotifier notifier) : base(notifier)
         {
             _authService = authService;
         }
@@ -40,9 +40,7 @@ namespace CyberPet.Api.Controllers
         public async Task<IActionResult> Register([FromBody] UserResgisterViewModel userResgister)
         {
             var user = await _authService.Register(userResgister);
-            if (user == null) return StatusCode(409, $"Usuario já cadastrado");
-            var response = new { Message = "Usurio Cadastrado Com Sucesso", Data = user };
-            return Created("", response);
+            return CustomResponse(user);
         }
     }
 }

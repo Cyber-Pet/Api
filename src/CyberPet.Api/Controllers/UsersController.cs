@@ -1,4 +1,5 @@
 ﻿using CyberPet.Api.Models;
+using CyberPet.Api.Models.Interfaces;
 using CyberPet.Api.Services.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -9,12 +10,10 @@ using System.Threading.Tasks;
 namespace CyberPet.Api.Controllers
 {
     [Route("api/[controller]")]
-    [ApiController]
-    [Produces("application/json")]
-    public class UsersController : ControllerBase
+    public class UsersController : CoreController
     {
         private readonly IUserService _userService;
-        public UsersController(IUserService userService)
+        public UsersController(IUserService userService, INotifier notifier) : base(notifier)
         {
             _userService = userService ?? throw new ArgumentNullException(nameof(userService));
         }
