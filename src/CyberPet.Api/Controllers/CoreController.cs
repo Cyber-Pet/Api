@@ -34,7 +34,7 @@ namespace CyberPet.Api.Controllers
             {
                 return CustomBadRequest();
             }
-            return CreatedAtAction("GET",json);
+            return CreatedAtAction(string.Empty,json);
         }
 
         protected ActionResult CustomBadRequest()

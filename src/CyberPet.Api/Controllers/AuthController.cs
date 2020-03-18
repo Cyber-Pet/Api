@@ -31,7 +31,6 @@ namespace CyberPet.Api.Controllers
             {
                 return Ok(userToken);
             }
-            return Unauthorized();
         }
 
         [HttpPost("register")]
