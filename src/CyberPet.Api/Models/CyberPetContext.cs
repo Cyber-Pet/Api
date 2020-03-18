@@ -33,11 +33,11 @@ namespace CyberPet.Api.Models
 
             foreach (var entityEntry in entries)
             {
-                ((CoreModel)entityEntry.Entity).UpdateAt = DateTime.Now;
+                (entityEntry.Entity as CoreModel).UpdateAt = DateTime.Now;
 
                 if (entityEntry.State == EntityState.Added)
                 {
-                    ((CoreModel)entityEntry.Entity).CreateAt = DateTime.Now;
+                    (entityEntry.Entity as CoreModel).CreateAt = DateTime.Now;
                 }
             }
             return await base.SaveChangesAsync();

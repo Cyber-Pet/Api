@@ -16,16 +16,34 @@ namespace CyberPet.Api.Controllers
         
         protected bool OperationValid() => !_notifier.HaveNotification();
 
-        protected ActionResult CustomResponse(object json)
+        protected ActionResult CustomResponse(string message, object data)
         {
-            if (OperationValid())
+            if (!OperationValid())
             {
-                return Ok(json);
+                return CustomBadRequest();
             }
-            else
+            return Ok(new
             {
-                return BadRequest(_notifier.GetNotifications().Select(x => x.Message));
+                message,
+                data
+            });
+        }
+        protected ActionResult CustomCreated(object json)
+        {
+            if (!OperationValid())
+            {
+                return CustomBadRequest();
             }
+            return CreatedAtAction("GET",json);
+        }
+
+        protected ActionResult CustomBadRequest()
+        {
+            var messages = _notifier.GetNotifications().Select(x => x.Message).ToList();
+            return BadRequest(new
+            {
+                errors = messages
+            });
         }
     }
 }

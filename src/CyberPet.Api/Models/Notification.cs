@@ -11,7 +11,13 @@ namespace CyberPet.Api.Models
         {
             Message = message;
         }
+        public Notification(string message, int statusCode)
+        {
+            Message = message;
+            StatusCode = statusCode;
+        }
         public string Message { get; set; }
+        public int StatusCode { get; set; }
         public string Exception { get; set; }
     }
 }
