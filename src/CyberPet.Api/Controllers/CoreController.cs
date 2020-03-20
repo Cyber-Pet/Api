@@ -28,13 +28,17 @@ namespace CyberPet.Api.Controllers
                 data
             });
         }
-        protected ActionResult CustomCreated(object json)
+        protected ActionResult CustomCreated(string actionName, string message, object data)
         {
             if (!OperationValid())
             {
                 return CustomBadRequest();
             }
-            return CreatedAtAction(string.Empty,json);
+            return CreatedAtAction(actionName,new 
+            {
+                message,
+                data
+            });
         }
 
         protected ActionResult CustomBadRequest()

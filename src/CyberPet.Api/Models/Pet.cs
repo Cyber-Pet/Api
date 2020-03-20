@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace CyberPet.Api.Models
 {
@@ -6,5 +7,6 @@ namespace CyberPet.Api.Models
     {
         [Required]
         public string PetName { get; set; }
+        public User User { get; set; }
     }
 }

@@ -37,11 +37,11 @@ namespace CyberPet.Api.Controllers
 
         [HttpPost("register")]
         [ProducesResponseType(typeof(User),StatusCodes.Status201Created)]
-        [ProducesResponseType(StatusCodes.Status409Conflict)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> Register([FromBody] UserResgisterViewModel userResgister)
         {
             var user = await _authService.Register(userResgister);
-            return CustomCreated(user);
+            return CustomCreated("POST", "Usuario Registrado com Sucesso", user);
         }
     }
 }
