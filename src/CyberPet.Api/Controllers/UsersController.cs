@@ -26,7 +26,7 @@ namespace CyberPet.Api.Controllers
             return Ok(allUsers);
         }
 
-        [HttpGet("{id:guid}")]
+        [HttpGet("{id:guid}", Name = "GetUserById")]
         [ProducesResponseType(typeof(User), StatusCodes.Status200OK)]
         public async Task<IActionResult> GetByIdAsync(Guid id)
         {

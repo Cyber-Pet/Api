@@ -41,7 +41,7 @@ namespace CyberPet.Api.Controllers
         public async Task<IActionResult> Register([FromBody] UserResgisterViewModel userResgister)
         {
             var user = await _authService.Register(userResgister);
-            return CustomCreated("POST", "Usuario Registrado com Sucesso", user);
+            return CustomCreated("GetUserById","Usuario registrado!",user, user.Id);
         }
     }
 }

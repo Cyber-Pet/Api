@@ -28,17 +28,18 @@ namespace CyberPet.Api.Controllers
                 data
             });
         }
-        protected ActionResult CustomCreated(string actionName, string message, object data)
+        protected ActionResult CustomCreated(string actionName, string message, object data, Guid guid)
         {
             if (!OperationValid())
             {
                 return CustomBadRequest();
             }
-            return CreatedAtAction(actionName,new 
+            return CreatedAtRoute(actionName, new { id = guid },new 
             {
                 message,
                 data
             });
+
         }
 
         protected ActionResult CustomBadRequest()
