@@ -16,7 +16,7 @@ namespace CyberPet.Api.Controllers
         
         protected bool OperationValid() => !_notifier.HaveNotification();
 
-        protected ActionResult CustomResponse(string message, object data)
+        protected ActionResult CustomResponse(string title, object data)
         {
             if (!OperationValid())
             {
@@ -24,11 +24,11 @@ namespace CyberPet.Api.Controllers
             }
             return Ok(new
             {
-                message,
+                title,
                 data
             });
         }
-        protected ActionResult CustomCreated(string actionName, string message, object data, Guid guid)
+        protected ActionResult CustomCreated(string actionName, string title, object data, Guid guid)
         {
             if (!OperationValid())
             {
@@ -36,7 +36,7 @@ namespace CyberPet.Api.Controllers
             }
             return CreatedAtRoute(actionName, new { id = guid },new 
             {
-                message,
+                title,
                 data
             });
 
@@ -47,6 +47,7 @@ namespace CyberPet.Api.Controllers
             var messages = _notifier.GetNotifications().Select(x => x.Message).ToList();
             return BadRequest(new
             {
+                title = "Deu Ruim!",
                 errors = messages
             });
         }

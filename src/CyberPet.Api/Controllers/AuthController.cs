@@ -27,12 +27,7 @@ namespace CyberPet.Api.Controllers
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
             var userToken = await _authService.Login(login);
-            if (userToken != null)
-            {
-                return Ok(userToken);
-            }
-
-            return Unauthorized();
+            return CustomResponse("Usuario Autenticado!",userToken);
         }
 
         [HttpPost("register")]
