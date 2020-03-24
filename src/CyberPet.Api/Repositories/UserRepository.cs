@@ -53,7 +53,7 @@ namespace CyberPet.Api.Repositories
         }
         public async Task<int> CreateAsync(User newUser)
         {
-            var user = await GetOneBy(x => x.Email == newUser.Email);
+            var user = await _context.Users.FirstOrDefaultAsync(x => x.Email == newUser.Email);
             if (user != null)
             {
                 _notifier.Add(new Notification("Já existe um usuario cadastrado com este E-Mail"));
