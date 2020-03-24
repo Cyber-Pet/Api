@@ -1,13 +1,16 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿
+using System.ComponentModel.DataAnnotations;
 
 namespace CyberPet.Api.ViewModel
 {
     public class LoginViewModel
     {
-        [Required]
-        [EmailAddress(ErrorMessage = "O Email informado não é um email valido")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Informar Email")]
+        [EmailAddress(ErrorMessage = "Email Invalido")]
         public string Email { get; set; }
-        [Required]
+
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Informar Senha")]
+        [MinLength(6,ErrorMessage = "A Senha deve conter no minimo {1} Caracteres")]
         public string Password { get; set; }
     }
 }
