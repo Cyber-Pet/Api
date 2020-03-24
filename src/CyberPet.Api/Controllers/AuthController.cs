@@ -45,6 +45,7 @@ namespace CyberPet.Api.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> Register([FromBody] UserResgisterViewModel userResgister)
         {
+            if (!ModelState.IsValid) return CustomBadRequest(ModelState);
             var user = await _authService.Register(userResgister);
             return CustomCreated("GetUserById","Usuario registrado!",user, user.Id);
         }
