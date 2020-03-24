@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using CyberPet.Api.Models;
+using CyberPet.Api.Models.Interfaces;
 using CyberPet.Api.Services.Interfaces;
 using CyberPet.Api.Utils;
 using CyberPet.Api.ViewModel;
@@ -18,23 +19,27 @@ namespace CyberPet.Api.Services
         private readonly IUserService _userService;
         private readonly IMapper _mapper;
         private readonly IConfiguration _configuration;
-        public AuthService(IUserService userService, IMapper mapper, IConfiguration configuration)
+        private readonly INotifier _notifier;
+        public AuthService(IUserService userService, IMapper mapper, IConfiguration configuration, INotifier notifier)
         {
             _userService = userService;
             _mapper = mapper;
             _configuration = configuration;
+            _notifier = notifier;
         }
 
         public async Task<TokenViewModel> Login(LoginViewModel userLogin)
         {
-            var user = await _userService.ReadOneBy(x => x.Email == userLogin.Email && x.Password == SecurityUtils.EncryptPassword(userLogin.Password));
-            if (user == null)
+            var user = await _userService.ReadOneBy(x => x.Email == userLogin.Email);
+            if (user == null) return null;
+            if (user.Password == SecurityUtils.EncryptPassword(userLogin.Password))
             {
-                return _mapper.Map<TokenViewModel>(user);
+                TokenViewModel userToken = _mapper.Map<TokenViewModel>(user);
+                userToken.token = GenerateToken(user);
+                return userToken;
             }
-            TokenViewModel userToken = _mapper.Map<TokenViewModel>(user);
-            userToken.token = GenerateToken(user);
-            return userToken;
+            _notifier.Add(new Notification("Senha Incorreta"));
+            return null;
         }
 
         public async Task<User> Register(UserResgisterViewModel userResgister)

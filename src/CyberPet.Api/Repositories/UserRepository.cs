@@ -43,7 +43,13 @@ namespace CyberPet.Api.Repositories
 
         public async Task<User> GetOneBy(Expression<Func<User, bool>> condition)
         {
-            return await _context.Users.FirstOrDefaultAsync(condition);
+            User user = await _context.Users.FirstOrDefaultAsync(condition);
+            if (user == null)
+            {
+                _notifier.Add(new Notification("Usuario não encontrado"));
+                return null;
+            }
+            return user;
         }
         public async Task<int> CreateAsync(User newUser)
         {
