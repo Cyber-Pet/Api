@@ -1,9 +1,8 @@
 ﻿using CyberPet.Api.Models.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace CyberPet.Api.Controllers
 {
@@ -51,5 +50,17 @@ namespace CyberPet.Api.Controllers
                 errors = messages
             });
         }
+        protected ActionResult CustomBadRequest(ModelStateDictionary modelStateDictionary)
+        {
+            var errors = modelStateDictionary.Values.SelectMany(e => e.Errors);
+
+            foreach (var erro in errors)
+            {
+                var mensage = erro.Exception == null ? erro.ErrorMessage : erro.Exception.Message;
+                _notifier.Add(new Models.Notification(mensage));
+            }
+            return CustomBadRequest();
+        }
+
     }
 }

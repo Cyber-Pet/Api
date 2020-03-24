@@ -40,7 +40,11 @@ namespace CyberPet.Api
 
                 options.UseNpgsql(Configuration.GetConnectionString("CyberPetDatabase"))
             );
-            services.AddControllers();
+            services.AddControllers()
+                .ConfigureApiBehaviorOptions(options => 
+                {
+                    options.SuppressModelStateInvalidFilter = true;
+                });
 
             services.AddSwaggerGen(c =>
             {

@@ -25,9 +25,9 @@ namespace CyberPet.Api.Controllers
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public async Task<IActionResult> Login([FromBody]LoginViewModel login)
         {
-            if (!ModelState.IsValid) return BadRequest(ModelState);
+            if (!ModelState.IsValid) return CustomBadRequest(ModelState);
             var userToken = await _authService.Login(login);
-            return CustomResponse("Usuario Autenticado!",userToken);
+            return CustomResponse("Usuario Autenticado!", userToken);
         }
 
         [HttpPost("register")]
