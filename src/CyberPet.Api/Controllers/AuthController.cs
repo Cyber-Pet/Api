@@ -19,6 +19,13 @@ namespace CyberPet.Api.Controllers
             _authService = authService;
         }
 
+
+        /// <summary>
+        /// Autenticar Usuario
+        /// </summary>
+        /// <remarks>
+        /// Metodo para realizar a autenticação do usuario, e receber o token jwt
+        /// </remarks>
         [AllowAnonymous]
         [HttpPost("login")]
         [ProducesResponseType(typeof(TokenViewModel), StatusCodes.Status200OK)]
@@ -30,6 +37,9 @@ namespace CyberPet.Api.Controllers
             return CustomResponse("Usuario Autenticado!", userToken);
         }
 
+        /// <summary>
+        /// Cadastrar novo Usuario
+        /// </summary>
         [HttpPost("register")]
         [ProducesResponseType(typeof(User),StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
