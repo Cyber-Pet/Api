@@ -4,5 +4,18 @@
         <name>CyberPet.Api</name>
     </assembly>
     <members>
+        <member name="M:CyberPet.Api.Controllers.AuthController.Login(CyberPet.Api.ViewModel.LoginViewModel)">
+            <summary>
+            Autenticar Usuario
+            </summary>
+            <remarks>
+            Metodo para realizar a autenticação do usuario, e receber o token jwt
+            </remarks>
+        </member>
+        <member name="M:CyberPet.Api.Controllers.AuthController.Register(CyberPet.Api.ViewModel.UserResgisterViewModel)">
+            <summary>
+            Cadastrar novo Usuario
+            </summary>
+        </member>
     </members>
 </doc>
