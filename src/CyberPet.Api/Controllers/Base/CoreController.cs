@@ -8,6 +8,7 @@ namespace CyberPet.Api.Controllers.Base
 {
     [ApiController]
     [Produces("application/json")]
+    [Route("api/[controller]")]
     public class CoreController : ControllerBase
     {
         private readonly INotifier _notifier;

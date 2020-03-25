@@ -10,7 +10,6 @@ using System.Threading.Tasks;
 
 namespace CyberPet.Api.Controllers
 {
-    [Route("api/[controller]")]
     public class AuthController : CoreController
     {
         private readonly IAuthService _authService;

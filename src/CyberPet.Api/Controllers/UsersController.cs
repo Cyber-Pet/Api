@@ -12,7 +12,6 @@ using System.Threading.Tasks;
 
 namespace CyberPet.Api.Controllers
 {
-    [Route("api/[controller]")]
     public class UsersController : CoreCrudController<IUserService, UserRequest ,UserResponse, User>
     {
         public UsersController(INotifier notifier, IMapper mapper, IUserService userService) : base(notifier, mapper, userService) { }
