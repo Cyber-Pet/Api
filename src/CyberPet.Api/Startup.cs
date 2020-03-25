@@ -41,6 +41,9 @@ namespace CyberPet.Api
             services.AddScoped<IPetService, PetService>();
             services.AddScoped<IPetRepository, PetRespository>();
 
+            services.AddScoped<IScheduleService, ScheduleService>();
+            services.AddScoped<IScheduleRepository, ScheduleRepository>();
+
             services.AddScoped<INotifier, Notifier>();
 
             services.AddAutoMapper(typeof(AutoMapperConfiguration));
