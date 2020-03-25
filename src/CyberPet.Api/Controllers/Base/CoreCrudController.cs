@@ -62,7 +62,7 @@ namespace CyberPet.Api.Controllers.Base
         /// </summary>
         /// <returns></returns>
         [HttpPut("{id:guid}")]
-        public async Task<ActionResult<TEntityResponse>> Put(Guid id, TEntityRequest request)
+        public async Task<ActionResult<TEntityResponse>> Put([FromRoute]Guid id, [FromBody]TEntityRequest request)
         {
             if (!ModelState.IsValid) return CustomBadRequest(ModelState);
             var entity = _mapper.Map<TEntity>(request);

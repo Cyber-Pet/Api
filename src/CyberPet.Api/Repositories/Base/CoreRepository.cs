@@ -33,7 +33,7 @@ namespace CyberPet.Api.Repositories.Base
             if (entity != null)
             {
                 _context.Set<TEntity>().Remove(entity);
-                await _context.SaveChangesAsync();
+                return await _context.SaveChangesAsync();
             }
             _notifier.Add("Registro não encontrado");
             return -1;
@@ -58,9 +58,10 @@ namespace CyberPet.Api.Repositories.Base
             return await _context.Set<TEntity>().FindAsync(id);
         }
 
-        public Task<int> UpdateAsync(TEntity entity)
+        public async Task<int> UpdateAsync(TEntity entity)
         {
-            throw new NotImplementedException();
+            _context.Set<TEntity>().Update(entity);
+            return await _context.SaveChangesAsync();
         }
     }
 }

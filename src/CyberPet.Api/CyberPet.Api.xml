@@ -4,7 +4,7 @@
         <name>CyberPet.Api</name>
     </assembly>
     <members>
-        <member name="M:CyberPet.Api.Controllers.AuthController.Login(CyberPet.Api.ViewModel.LoginViewModel)">
+        <member name="M:CyberPet.Api.Controllers.AuthController.Login(CyberPet.Api.Views.LoginRequest)">
             <summary>
             Autenticar Usuario
             </summary>
@@ -12,7 +12,7 @@
             Metodo para realizar a autenticação do usuario, e receber o token jwt
             </remarks>
         </member>
-        <member name="M:CyberPet.Api.Controllers.AuthController.Register(CyberPet.Api.ViewModel.UserRequest)">
+        <member name="M:CyberPet.Api.Controllers.AuthController.Register(CyberPet.Api.Views.UserRequest)">
             <summary>
             Cadastrar novo Usuario
             </summary>
@@ -41,24 +41,19 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="P:CyberPet.Api.ViewModel.Base.BaseResponse.Id">
+        <member name="P:CyberPet.Api.Views.Base.BaseResponse.Id">
             <summary>
             Código identificador para atualiação do registro
             </summary>
         </member>
-        <member name="P:CyberPet.Api.ViewModel.Base.BaseResponse.CreateAt">
+        <member name="P:CyberPet.Api.Views.Base.BaseResponse.CreateAt">
             <summary>
             Data de criação do registro
             </summary>
         </member>
-        <member name="P:CyberPet.Api.ViewModel.Base.BaseResponse.UpdateAt">
+        <member name="P:CyberPet.Api.Views.Base.BaseResponse.UpdateAt">
             <summary>
             Data da ultima atualização do registro
-            </summary>
-        </member>
-        <member name="P:CyberPet.Api.ViewModel.Base.BaseViewModel.Id">
-            <summary>
-            Código identificador para atualiação do registro
             </summary>
         </member>
     </members>
