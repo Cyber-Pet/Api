@@ -41,7 +41,7 @@ namespace CyberPet.Api.Services
                 Assert.Same(expectedUsers, result);
             }
         }
-        public class GetByIdAsync : UserServiceTest
+        public class GetOneByIdAsync : UserServiceTest
         {
             [Fact]
             public async Task Deve_retornar_o_usuario_esperado()
@@ -50,11 +50,11 @@ namespace CyberPet.Api.Services
                 var userId = Guid.NewGuid();
                 var expectedUser = new User { Id = userId, Name = "Gabriel Meyer", Email = "ghmeyer0@gmail.com" };
                 UserRepositoryMock
-                    .Setup(x => x.GetByIdAsync(userId))
+                    .Setup(x => x.GetOneByIdAsync(userId))
                     .ReturnsAsync(expectedUser);
 
                 // Act
-                var result = await ServiceUnderTest.GetByIdAsync(userId);
+                var result = await ServiceUnderTest.GetOneByIdAsync(userId);
 
                 // Assert
                 Assert.Same(expectedUser, result);
@@ -66,11 +66,11 @@ namespace CyberPet.Api.Services
                 // Arrange
                 var userId = Guid.NewGuid();
                 UserRepositoryMock
-                    .Setup(x => x.GetByIdAsync(userId))
+                    .Setup(x => x.GetOneByIdAsync(userId))
                     .ReturnsAsync(default(User));
 
                 // Act
-                var result = await ServiceUnderTest.GetByIdAsync(userId);
+                var result = await ServiceUnderTest.GetOneByIdAsync(userId);
 
                 // Assert
                 Assert.Null(result);

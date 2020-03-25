@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc.ModelBinding;
 using System;
 using System.Linq;
 
-namespace CyberPet.Api.Controllers
+namespace CyberPet.Api.Controllers.Base
 {
     [ApiController]
     [Produces("application/json")]

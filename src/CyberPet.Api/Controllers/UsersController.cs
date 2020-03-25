@@ -1,4 +1,5 @@
-﻿using CyberPet.Api.Models;
+﻿using CyberPet.Api.Controllers.Base;
+using CyberPet.Api.Models;
 using CyberPet.Api.Models.Interfaces;
 using CyberPet.Api.Services.Interfaces;
 using Microsoft.AspNetCore.Http;
@@ -28,9 +29,9 @@ namespace CyberPet.Api.Controllers
 
         [HttpGet("{id:guid}", Name = "GetUserById")]
         [ProducesResponseType(typeof(User), StatusCodes.Status200OK)]
-        public async Task<IActionResult> GetByIdAsync(Guid id)
+        public async Task<IActionResult> GetOneByIdAsync(Guid id)
         {
-            var user = await _userService.GetByIdAsync(id);
+            var user = await _userService.GetOneByIdAsync(id);
             return Ok(user);
         }
 

@@ -30,7 +30,7 @@ namespace CyberPet.Api.Repositories
             return users;
         }
 
-        public async Task<User> GetByIdAsync(Guid id)
+        public async Task<User> GetOneByIdAsync(Guid id)
         {
             User user = await _context.Users.FindAsync(id);
             if (user == null)
@@ -66,7 +66,7 @@ namespace CyberPet.Api.Repositories
 
         public async Task<int> DeleteAsync(Guid id)
         {
-            User user = await GetByIdAsync(id);
+            User user = await GetOneByIdAsync(id);
             if (user == null) return -1;
             _context.Users.Remove(user);
             return await _context.SaveChangesAsync();

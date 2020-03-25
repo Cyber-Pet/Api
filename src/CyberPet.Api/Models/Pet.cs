@@ -1,4 +1,6 @@
-﻿using System;
+﻿using CyberPet.Api.Models.Base;
+using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -8,9 +10,12 @@ namespace CyberPet.Api.Models
     {
         [Required]
         public string PetName { get; set; }
+        public Bowl Bowl { get; set; }
+        public ICollection<Schedule> Schedules { get; set; }
 
         [Required]
         public Guid UserId { get; set; }
         public User User { get; set; }
+       
     }
 }

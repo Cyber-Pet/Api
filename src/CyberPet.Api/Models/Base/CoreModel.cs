@@ -1,12 +1,13 @@
-﻿using MassTransit;
+﻿using CyberPet.Api.Models.Interfaces;
+using MassTransit;
 using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace CyberPet.Api.Models
+namespace CyberPet.Api.Models.Base
 {
-    public class CoreModel
+    public class CoreModel : ICoreModel
     {
-        protected CoreModel()
+        protected CoreModel() 
         {
             Id = NewId.NextGuid();
         }

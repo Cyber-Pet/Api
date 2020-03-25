@@ -4,6 +4,7 @@ using CyberPet.Api.Models.Interfaces;
 using CyberPet.Api.Services.Interfaces;
 using CyberPet.Api.Utils;
 using CyberPet.Api.ViewModel;
+using MassTransit;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System;
@@ -44,8 +45,10 @@ namespace CyberPet.Api.Services
 
         public async Task<User> Register(UserResgisterViewModel userResgister)
         {
-            var newUser = await _userService.CreateAsync(_mapper.Map<User>(userResgister));
-            return newUser;
+            User user = _mapper.Map<User>(userResgister);
+            user.Id = NewId.NextGuid();
+            await _userService.CreateAsync(user);
+            return user;
         }
 
         private string GenerateToken(User user)

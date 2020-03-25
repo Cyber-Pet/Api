@@ -33,9 +33,9 @@ namespace CyberPet.Api.Services
             return _userRepository.GetAllAsync();
         }
 
-        public Task<User> GetByIdAsync(Guid Id)
+        public Task<User> GetOneByIdAsync(Guid Id)
         {
-            return _userRepository.GetByIdAsync(Id);
+            return _userRepository.GetOneByIdAsync(Id);
         }
 
         public async Task<User> ReadOneBy(Expression<Func<User, bool>> expression)
@@ -46,6 +46,11 @@ namespace CyberPet.Api.Services
         public Task<int> UpdateAsync(User user)
         {
             throw new NotSupportedException();
+        }
+
+        Task<int> IUserService.CreateAsync(User user)
+        {
+            throw new NotImplementedException();
         }
     }
 }

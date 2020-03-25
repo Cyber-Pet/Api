@@ -17,5 +17,34 @@
             Cadastrar novo Usuario
             </summary>
         </member>
+        <member name="M:CyberPet.Api.Controllers.Base.CoreCrudController`3.Post(`1)">
+            <summary> 
+            Cadastra uma nova entidade
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:CyberPet.Api.Controllers.Base.CoreCrudController`3.Get(System.Guid)">
+            <summary>
+            Lista os parametros de acordo o codigo passado
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:CyberPet.Api.Controllers.Base.CoreCrudController`3.Put(System.Guid,`1)">
+            <summary>
+            Atualiza os dados de acordo com os parametros passados
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:CyberPet.Api.Controllers.Base.CoreCrudController`3.Delete(System.Guid)">
+            <summary>
+            Remove o registro da base de dados
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:CyberPet.Api.ViewModel.Base.BaseViewModel.Id">
+            <summary>
+            Código identificador para atualiação do registro
+            </summary>
+        </member>
     </members>
 </doc>

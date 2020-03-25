@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using CyberPet.Api.Models.Base;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace CyberPet.Api.Models

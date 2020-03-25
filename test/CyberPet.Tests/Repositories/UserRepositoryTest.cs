@@ -35,7 +35,7 @@ namespace CyberPet.Api.Repositories
             }
         }
 
-        public class GetByIdAsync : UserRepositoryTest
+        public class GetOneByIdAsync : UserRepositoryTest
         {
             [Fact]
             public async Task Deve_retornar_o_usuario_esperado()
@@ -43,7 +43,7 @@ namespace CyberPet.Api.Repositories
                 // Arrange
 
                 // Act
-                var result = await RepositoryUnderTest.GetByIdAsync(testId);
+                var result = await RepositoryUnderTest.GetOneByIdAsync(testId);
 
                 // Assert
                 Assert.Equal("ghmeyer0@gmail.com", result.Email);
@@ -56,7 +56,7 @@ namespace CyberPet.Api.Repositories
                 var id = Guid.NewGuid();
 
                 // Act 
-                var result = await RepositoryUnderTest.GetByIdAsync(id);
+                var result = await RepositoryUnderTest.GetOneByIdAsync(id);
 
                 // Assert
                 Assert.Null(result);

@@ -1,4 +1,5 @@
-﻿using CyberPet.Api.Models;
+﻿using CyberPet.Api.Controllers.Base;
+using CyberPet.Api.Models;
 using CyberPet.Api.Models.Interfaces;
 using CyberPet.Api.Services.Interfaces;
 using CyberPet.Api.ViewModel;
@@ -18,7 +19,6 @@ namespace CyberPet.Api.Controllers
         {
             _authService = authService;
         }
-
 
         /// <summary>
         /// Autenticar Usuario

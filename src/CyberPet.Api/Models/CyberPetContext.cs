@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using CyberPet.Api.Models.Base;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;
 using System.Threading;
@@ -13,6 +14,7 @@ namespace CyberPet.Api.Models
         }
         public DbSet<User> Users { get; set; }
         public DbSet<Pet> Pets { get; set; }
+        public DbSet<Schedule> Schedules { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -22,6 +24,18 @@ namespace CyberPet.Api.Models
                 .HasForeignKey(p => p.UserId)
                 .IsRequired()
                 .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<Pet>()
+                .HasOne(b => b.Bowl)
+                .WithOne(p => p.Pet)
+                .OnDelete(DeleteBehavior.SetNull);
+
+            modelBuilder.Entity<Pet>()
+                .HasMany(s => s.Schedules)
+                .WithOne(p => p.Pet)
+                .HasForeignKey(s => s.PetId)
+                .OnDelete(DeleteBehavior.Cascade);
+
 
             modelBuilder.Entity<User>().HasData(
                 new User { Id = Guid.Parse("bfbd39c6-76cb-4f49-8351-09ac4b64cb9c"), Email = "ghmeyer0@gmail.com", Name = "Gabriel Helko Meyer", Password = "4edc2113d0937fcc5f79c2f3af0a6aa30fa8fb545bfed7d06693d2c909399600", CreateAt = DateTime.Now, UpdateAt = DateTime.Now },

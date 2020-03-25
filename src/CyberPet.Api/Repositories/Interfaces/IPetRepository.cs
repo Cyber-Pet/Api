@@ -6,13 +6,10 @@ using System.Threading.Tasks;
 
 namespace CyberPet.Api.Repositories.Interfaces
 {
-    interface IPetRepository
+    public interface IPetRepository : ICoreRepository<Pet>
     {
-        Task<IEnumerable<Pet>> GetAllAsync();
         Task<IEnumerable<Pet>> GetAllByUserIdAsync(Guid id);
-        Task<Pet> GetByIdAsync(Guid id);
-        Task<int> CreateAsync(Pet newPet);
-        Task<int> UpdateAsync(Pet updatedPet);
-        Task<int> DeleteAsync(Guid id);
+        Task<Pet> GetOneByIdAsync(Guid id);
+
     }
 }

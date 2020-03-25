@@ -47,7 +47,7 @@ namespace CyberPet.Api.Controllers
             }
         }
 
-        public class GetByIdAsync : UsersControllerTest
+        public class GetOneByIdAsync : UsersControllerTest
         {
             [Fact]
             public async Task Deve_retornar_OkObjectResult_com_o_usuario_esperado()
@@ -62,11 +62,11 @@ namespace CyberPet.Api.Controllers
                     Password = "aaaaa"
                 };
                 UserServiceMock
-                    .Setup(x => x.GetByIdAsync(id))
+                    .Setup(x => x.GetOneByIdAsync(id))
                     .ReturnsAsync(expectedUser);
 
                 // Act
-                var result = await ControllerUnderTest.GetByIdAsync(id);
+                var result = await ControllerUnderTest.GetOneByIdAsync(id);
 
                 // Assert
                 var okResult = Assert.IsType<OkObjectResult>(result);
@@ -81,11 +81,11 @@ namespace CyberPet.Api.Controllers
                 Guid id = Guid.NewGuid();
                 User expectedValue = null;
                 UserServiceMock
-                    .Setup(x => x.GetByIdAsync(id))
+                    .Setup(x => x.GetOneByIdAsync(id))
                     .ReturnsAsync(expectedValue);
 
                 // Act
-                var result = await ControllerUnderTest.GetByIdAsync(id);
+                var result = await ControllerUnderTest.GetOneByIdAsync(id);
 
                 // Assert
                 var okResult = Assert.IsType<OkObjectResult>(result);
