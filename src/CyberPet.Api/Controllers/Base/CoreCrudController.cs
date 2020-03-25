@@ -16,8 +16,8 @@ namespace CyberPet.Api.Controllers.Base
         where TService : ICoreCrudService<TEntity>
         where TEntity : ICoreModel
     {
-        protected readonly TService _service;
-        protected readonly IMapper _mapper;
+        private readonly TService _service;
+        private readonly IMapper _mapper;
         public CoreCrudController(INotifier notifier, IMapper mapper, TService service) : base(notifier)
         {
             _service = service;

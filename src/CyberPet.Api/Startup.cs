@@ -1,4 +1,5 @@
 using AutoMapper;
+using CyberPet.Api.Configuration;
 using CyberPet.Api.Models;
 using CyberPet.Api.Models.Interfaces;
 using CyberPet.Api.Repositories;
@@ -33,12 +34,16 @@ namespace CyberPet.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddScoped<IUserService, UserService>();
             services.AddScoped<IAuthService, AuthService>();
+            services.AddScoped<IUserService, UserService>();
             services.AddScoped<IUserRepository, UserRepository>();
+            
+            services.AddScoped<IPetService, PetService>();
+            services.AddScoped<IPetRepository, PetRespository>();
+
             services.AddScoped<INotifier, Notifier>();
 
-            services.AddAutoMapper(typeof(CyberPetProfile));
+            services.AddAutoMapper(typeof(AutoMapperConfiguration));
             services.AddDbContext<CyberPetContext>(options =>
 
                 options.UseNpgsql(Configuration.GetConnectionString("CyberPetDatabase"))
