@@ -1,6 +1,5 @@
 ﻿using CyberPet.Api.Models;
 using CyberPet.Api.Models.Interfaces;
-using CyberPet.Api.Utils;
 using System;
 using System.Linq;
 using System.Threading.Tasks;

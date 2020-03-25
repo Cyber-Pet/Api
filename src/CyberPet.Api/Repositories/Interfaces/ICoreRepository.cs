@@ -8,9 +8,9 @@ namespace CyberPet.Api.Repositories.Interfaces
 {
     public interface ICoreRepository<TEntity>
         where TEntity : ICoreModel
-    { 
+    {
         Task<int> CreateAsync(TEntity entity);
-        
+
         Task<int> DeleteAsync(Guid id);
 
         Task<IEnumerable<TEntity>> GetAllAsync();

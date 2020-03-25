@@ -7,13 +7,13 @@ namespace CyberPet.Api.Models.Base
 {
     public class CoreModel : ICoreModel
     {
-        protected CoreModel() 
+        protected CoreModel()
         {
             Id = NewId.NextGuid();
         }
         [Key]
         public Guid Id { get; set; }
         public DateTime CreateAt { get; set; }
-        public DateTime UpdateAt { get; set; }  
+        public DateTime UpdateAt { get; set; }
     }
 }

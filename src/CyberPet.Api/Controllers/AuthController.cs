@@ -6,7 +6,6 @@ using CyberPet.Api.ViewModel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Threading.Tasks;
 
 namespace CyberPet.Api.Controllers
@@ -41,13 +40,13 @@ namespace CyberPet.Api.Controllers
         /// Cadastrar novo Usuario
         /// </summary>
         [HttpPost("register")]
-        [ProducesResponseType(typeof(User),StatusCodes.Status201Created)]
+        [ProducesResponseType(typeof(User), StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> Register([FromBody] UserResgisterViewModel userResgister)
         {
             if (!ModelState.IsValid) return CustomBadRequest(ModelState);
             var user = await _authService.Register(userResgister);
-            return CustomCreated("GetUserById","Usuario registrado!",user, user.Id);
+            return CustomCreated("GetUserById", "Usuario registrado!", user, user.Id);
         }
     }
 }

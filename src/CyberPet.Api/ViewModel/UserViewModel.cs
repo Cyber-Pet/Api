@@ -1,6 +1,6 @@
 ﻿namespace CyberPet.Api.ViewModel
 {
-    public class UserViewModel 
+    public class UserViewModel
     {
     }
 }

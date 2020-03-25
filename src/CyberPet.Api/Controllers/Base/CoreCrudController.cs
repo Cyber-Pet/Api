@@ -6,7 +6,6 @@ using MassTransit;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace CyberPet.Api.Controllers.Base
@@ -43,7 +42,7 @@ namespace CyberPet.Api.Controllers.Base
             if (!ModelState.IsValid) return CustomBadRequest(ModelState);
             var registros = await _service.GetAllAsync();
             var result = _mapper.Map<List<TEntityViewModel>>(registros);
-            return CustomResponse("Dados recuperados",result);
+            return CustomResponse("Dados recuperados", result);
         }
 
         /// <summary>
@@ -68,7 +67,7 @@ namespace CyberPet.Api.Controllers.Base
             if (!ModelState.IsValid) return CustomBadRequest(ModelState);
             entityViewModel.Id = id;
             var entity = _mapper.Map<TEntity>(entityViewModel);
-            return CustomResponse("Registro Atualizado com Sucesso!",await _service.UpdateAsync(entity));
+            return CustomResponse("Registro Atualizado com Sucesso!", await _service.UpdateAsync(entity));
         }
 
         /// <summary>

@@ -76,7 +76,7 @@ namespace CyberPet.Api.Services
                 Assert.Null(result);
             }
         }
-        
+
         public class CreateAsync : UserServiceTest
         {
             [Fact]
@@ -105,5 +105,5 @@ namespace CyberPet.Api.Services
             }
         }
     }
-    
+
 }

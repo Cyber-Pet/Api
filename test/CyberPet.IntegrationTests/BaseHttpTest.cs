@@ -1,14 +1,11 @@
 ﻿using CyberPet.Api;
 using CyberPet.Api.Models;
-using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.TestHost;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System;
-using System.Collections.Generic;
 using System.Net.Http;
-using System.Text;
 
 namespace CyberPet.IntegrationTests
 {
@@ -34,8 +31,8 @@ namespace CyberPet.IntegrationTests
 
         protected virtual void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<CyberPetContext>( options => 
-                options.UseSqlite("Data Source=cyber.db")
+            services.AddDbContext<CyberPetContext>(options =>
+               options.UseSqlite("Data Source=cyber.db")
             );
         }
 

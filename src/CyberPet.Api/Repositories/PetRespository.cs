@@ -13,9 +13,7 @@ namespace CyberPet.Api.Repositories
     public class PetRespository : CoreRepository<Pet>, IPetRepository
     {
 
-        public PetRespository(CyberPetContext context, INotifier notifier) : base(context, notifier)
-        {
-        }
+        public PetRespository(CyberPetContext context, INotifier notifier) : base(context, notifier) { };
 
         public async Task<IEnumerable<Pet>> GetAllByUserIdAsync(Guid id)
         {

@@ -1,10 +1,10 @@
 ﻿using CyberPet.Api.Models;
+using CyberPet.Api.Models.Interfaces;
 using CyberPet.Api.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
 using System;
 using System.Threading.Tasks;
-using CyberPet.Api.Models.Interfaces;
 using Xunit;
 
 namespace CyberPet.Api.Controllers
@@ -13,7 +13,7 @@ namespace CyberPet.Api.Controllers
     {
         protected UsersController ControllerUnderTest { get; }
         private readonly INotifier notifierMock;
-        protected Mock<IUserService> UserServiceMock { get;  }
+        protected Mock<IUserService> UserServiceMock { get; }
 
         public UsersControllerTest()
         {

@@ -37,7 +37,7 @@ namespace CyberPet.Api
             services.AddScoped<IAuthService, AuthService>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IUserRepository, UserRepository>();
-            
+
             services.AddScoped<IPetService, PetService>();
             services.AddScoped<IPetRepository, PetRespository>();
 

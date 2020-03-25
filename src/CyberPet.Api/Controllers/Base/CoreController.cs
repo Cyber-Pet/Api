@@ -12,7 +12,7 @@ namespace CyberPet.Api.Controllers.Base
     {
         private readonly INotifier _notifier;
         public CoreController(INotifier notifier) => _notifier = notifier ?? throw new ArgumentNullException(nameof(notifier));
-        
+
         protected bool OperationValid() => !_notifier.HaveNotification();
 
         protected ActionResult CustomResponse(string title, object data)
@@ -33,7 +33,7 @@ namespace CyberPet.Api.Controllers.Base
             {
                 return CustomBadRequest();
             }
-            return CreatedAtRoute(actionName, new { id = guid },new 
+            return CreatedAtRoute(actionName, new { id = guid }, new
             {
                 title,
                 data
