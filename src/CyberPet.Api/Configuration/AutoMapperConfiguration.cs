@@ -8,8 +8,7 @@ namespace CyberPet.Api.Configuration
     {
         public AutoMapperConfiguration()
         {
-            CreateMap<PetViewModel, Pet>()
-                .;
+            CreateMap<Pet, PetViewModel>();
         }
     }
 }
