@@ -3,15 +3,17 @@ using System;
 using CyberPet.Api.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace CyberPet.Api.Migrations
 {
     [DbContext(typeof(CyberPetContext))]
-    partial class CyberPetContextModelSnapshot : ModelSnapshot
+    [Migration("20200325211532_RemovidoEnul")]
+    partial class RemovidoEnul
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -8,6 +8,5 @@ namespace CyberPet.Api.Views
     {
         public Guid PetId { get; set; }
         public DateTime Time { get; set; }
-        public List<DayOfWeek> DaysOfWeek { get; set; }
     }
 }
