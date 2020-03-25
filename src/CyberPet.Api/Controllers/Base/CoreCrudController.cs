@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using CyberPet.Api.Models.Interfaces;
 using CyberPet.Api.Services.Interfaces;
-using CyberPet.Api.ViewModel.Base;
+using CyberPet.Api.Views.Base;
 using MassTransit;
 using Microsoft.AspNetCore.Mvc;
 using System;

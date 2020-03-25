@@ -1,9 +1,9 @@
 ﻿using CyberPet.Api.Models;
-using CyberPet.Api.ViewModel.Base;
+using CyberPet.Api.Views.Base;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace CyberPet.Api.ViewModel
+namespace CyberPet.Api.Views
 {
     public class UserResponse : BaseResponse
     {

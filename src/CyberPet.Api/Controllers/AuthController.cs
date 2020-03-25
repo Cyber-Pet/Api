@@ -2,7 +2,7 @@
 using CyberPet.Api.Models;
 using CyberPet.Api.Models.Interfaces;
 using CyberPet.Api.Services.Interfaces;
-using CyberPet.Api.ViewModel;
+using CyberPet.Api.Views;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -27,9 +27,9 @@ namespace CyberPet.Api.Controllers
         /// </remarks>
         [AllowAnonymous]
         [HttpPost("login")]
-        [ProducesResponseType(typeof(TokenViewModel), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(LoginResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-        public async Task<IActionResult> Login([FromBody]LoginViewModel login)
+        public async Task<IActionResult> Login([FromBody]LoginRequest login)
         {
             if (!ModelState.IsValid) return CustomBadRequest(ModelState);
             var userToken = await _authService.Login(login);

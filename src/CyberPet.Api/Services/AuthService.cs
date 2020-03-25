@@ -3,7 +3,7 @@ using CyberPet.Api.Models;
 using CyberPet.Api.Models.Interfaces;
 using CyberPet.Api.Services.Interfaces;
 using CyberPet.Api.Utils;
-using CyberPet.Api.ViewModel;
+using CyberPet.Api.Views;
 using MassTransit;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
@@ -29,13 +29,13 @@ namespace CyberPet.Api.Services
             _notifier = notifier;
         }
 
-        public async Task<TokenViewModel> Login(LoginViewModel userLogin)
+        public async Task<LoginResponse> Login(LoginRequest userLogin)
         {
             var user = await _userService.GetByEmail(userLogin.Email);
             if (user == null) return null;
             if (user.Password == SecurityUtils.EncryptPassword(userLogin.Password))
             {
-                TokenViewModel userToken = _mapper.Map<TokenViewModel>(user);
+                LoginResponse userToken = _mapper.Map<LoginResponse>(user);
                 userToken.token = GenerateToken(user);
                 return userToken;
             }

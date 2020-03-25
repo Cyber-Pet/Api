@@ -1,7 +1,7 @@
-﻿using CyberPet.Api.ViewModel.Base;
+﻿using CyberPet.Api.Views.Base;
 using System;
 
-namespace CyberPet.Api.ViewModel
+namespace CyberPet.Api.Views
 {
     public class PetRequest : BaseRequest
     {

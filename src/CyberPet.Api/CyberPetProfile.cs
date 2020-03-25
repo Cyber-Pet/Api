@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using CyberPet.Api.Models;
-using CyberPet.Api.ViewModel;
+using CyberPet.Api.Views;
 
 namespace CyberPet.Api
 {
@@ -8,7 +8,7 @@ namespace CyberPet.Api
     {
         public CyberPetProfile()
         {
-            CreateMap<User, TokenViewModel>();
+            CreateMap<User, LoginResponse>();
             CreateMap<UserRequest, User>();
         }
     }

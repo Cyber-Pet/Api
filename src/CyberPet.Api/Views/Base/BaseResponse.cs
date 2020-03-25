@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace CyberPet.Api.ViewModel.Base
+namespace CyberPet.Api.Views.Base
 {
     public class BaseResponse
     {

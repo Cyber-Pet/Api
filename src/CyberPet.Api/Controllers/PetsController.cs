@@ -3,7 +3,7 @@ using CyberPet.Api.Controllers.Base;
 using CyberPet.Api.Models;
 using CyberPet.Api.Models.Interfaces;
 using CyberPet.Api.Services.Interfaces;
-using CyberPet.Api.ViewModel;
+using CyberPet.Api.Views;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CyberPet.Api.Controllers

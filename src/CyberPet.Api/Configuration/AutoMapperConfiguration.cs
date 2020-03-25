@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using CyberPet.Api.Models;
-using CyberPet.Api.ViewModel;
+using CyberPet.Api.Views;
 
 namespace CyberPet.Api.Configuration
 {

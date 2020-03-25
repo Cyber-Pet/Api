@@ -46,12 +46,12 @@
             Código identificador para atualiação do registro
             </summary>
         </member>
-        <member name="P:CyberPet.Api.ViewModel.Base.BaseResponse.CreatedAt">
+        <member name="P:CyberPet.Api.ViewModel.Base.BaseResponse.CreateAt">
             <summary>
             Data de criação do registro
             </summary>
         </member>
-        <member name="P:CyberPet.Api.ViewModel.Base.BaseResponse.UpdatedAt">
+        <member name="P:CyberPet.Api.ViewModel.Base.BaseResponse.UpdateAt">
             <summary>
             Data da ultima atualização do registro
             </summary>

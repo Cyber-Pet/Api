@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace CyberPet.Api.ViewModel
+namespace CyberPet.Api.Views
 {
-    public class TokenViewModel
+    public class LoginResponse
     {
         public Guid Id { get; set; }
         public string Email { get; set; }
