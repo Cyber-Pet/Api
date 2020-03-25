@@ -67,11 +67,7 @@ namespace CyberPet.Api.Repositories
         public async Task<int> DeleteAsync(Guid id)
         {
             User user = await GetByIdAsync(id);
-            if (user == null)
-            {
-                _notifier.Add(new Notification("Usuario não encontrado"));
-                return -1;
-            }
+            if (user == null) return -1;
             _context.Users.Remove(user);
             return await _context.SaveChangesAsync();
 

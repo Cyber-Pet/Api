@@ -1,6 +1,7 @@
 ﻿using CyberPet.Api.Models;
 using CyberPet.Api.Models.Interfaces;
 using CyberPet.Api.Repositories.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,29 +19,59 @@ namespace CyberPet.Api.Repositories
             _context = context;
             _notifier = notifier;
         }
-        public Task<int> CreateAsync(Pet pet)
+        public async Task<int> CreateAsync(Pet newPet)
         {
-            throw new NotImplementedException();
+            Pet pet = await _context.Pets.FirstOrDefaultAsync(x => x.UserId == newPet.UserId && x.PetName == newPet.PetName);
+            if (pet != null)
+            {
+                _notifier.Add(new Notification("Já existe um pet cadastrado com este nome"));
+                return -1;
+            }
+            await _context.Pets.AddAsync(newPet);
+            return await _context.SaveChangesAsync();
         }
 
-        public Task<int> DeleteAsync(Guid id)
+        public async Task<int> DeleteAsync(Guid id)
         {
-            throw new NotImplementedException();
+            Pet pet = await GetByIdAsync(id);
+            if (pet == null) return -1;
+            _context.Pets.Remove(pet);
+            return await _context.SaveChangesAsync();
         }
 
-        public Task<IEnumerable<Pet>> GetAllAsync()
+        public async Task<IEnumerable<Pet>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            var pets = await _context.Pets.ToListAsync();
+            if (!pets.Any())
+            {
+                _notifier.Add(new Notification("Não existe Pets cadastrados"));
+                return null;
+            }
+            return pets;
         }
 
-        public Task<Pet> GetByIdAsync(Guid id)
+        public async Task<IEnumerable<Pet>> GetAllByUserIdAsync(Guid id)
         {
-            throw new NotImplementedException();
+            var pets = await _context.Pets
+                .Where(x => x.UserId == id)
+                .ToListAsync();
+            if (!pets.Any())
+            {
+                _notifier.Add(new Notification("Não existe pets cadastrados"));
+                return null;
+            }
+            return pets;
         }
 
-        public Task<User> GetOneBy(Expression<Func<Pet, bool>> expression)
+        public async Task<Pet> GetByIdAsync(Guid id)
         {
-            throw new NotImplementedException();
+            Pet pet = await _context.Pets.FirstOrDefaultAsync(x => x.Id == id);
+            if (pet == null)
+            {
+                _notifier.Add(new Notification("Não existe pets cadastrados"));
+                return null;
+            }
+            return pet;
         }
 
         public Task<int> UpdateAsync(Pet user)

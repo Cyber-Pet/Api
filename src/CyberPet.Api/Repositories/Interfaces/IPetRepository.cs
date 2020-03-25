@@ -9,10 +9,10 @@ namespace CyberPet.Api.Repositories.Interfaces
     interface IPetRepository
     {
         Task<IEnumerable<Pet>> GetAllAsync();
+        Task<IEnumerable<Pet>> GetAllByUserIdAsync(Guid id);
         Task<Pet> GetByIdAsync(Guid id);
-        Task<User> GetOneBy(Expression<Func<Pet, bool>> expression);
-        Task<int> CreateAsync(Pet pet);
-        Task<int> UpdateAsync(Pet pet);
+        Task<int> CreateAsync(Pet newPet);
+        Task<int> UpdateAsync(Pet updatedPet);
         Task<int> DeleteAsync(Guid id);
     }
 }
