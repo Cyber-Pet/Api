@@ -15,7 +15,7 @@ namespace CyberPet.Api.Services
         public override Task<int> CreateAsync(User user)
         {
             user.Password = SecurityUtils.EncryptPassword(user.Password);
-            return _repository.CreateAsync(user);
+            return base.CreateAsync(user);
         }
 
         public Task<User> GetByEmail(string email)
