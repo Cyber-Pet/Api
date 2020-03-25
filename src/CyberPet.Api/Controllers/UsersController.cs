@@ -1,7 +1,9 @@
-﻿using CyberPet.Api.Controllers.Base;
+﻿using AutoMapper;
+using CyberPet.Api.Controllers.Base;
 using CyberPet.Api.Models;
 using CyberPet.Api.Models.Interfaces;
 using CyberPet.Api.Services.Interfaces;
+using CyberPet.Api.ViewModel;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -11,52 +13,9 @@ using System.Threading.Tasks;
 namespace CyberPet.Api.Controllers
 {
     [Route("api/[controller]")]
-    public class UsersController : CoreController
+    public class UsersController : CoreCrudController<IUserService, UserRequest ,UserResponse, User>
     {
-        private readonly IUserService _userService;
-        public UsersController(IUserService userService, INotifier notifier) : base(notifier)
-        {
-            _userService = userService ?? throw new ArgumentNullException(nameof(userService));
-        }
+        public UsersController(INotifier notifier, IMapper mapper, IUserService userService) : base(notifier, mapper, userService) { }
 
-        [HttpGet]
-        [ProducesResponseType(typeof(IEnumerable<User>), StatusCodes.Status200OK)]
-        public async Task<IActionResult> GetAllAsync()
-        {
-            var allUsers = await _userService.GetAllAsync();
-            return Ok(allUsers);
-        }
-
-        [HttpGet("{id:guid}", Name = "GetUserById")]
-        [ProducesResponseType(typeof(User), StatusCodes.Status200OK)]
-        public async Task<IActionResult> GetOneByIdAsync(Guid id)
-        {
-            var user = await _userService.GetOneByIdAsync(id);
-            return Ok(user);
-        }
-
-        [HttpPut]
-        [ProducesResponseType(typeof(User), StatusCodes.Status200OK)]
-        public async Task<IActionResult> UpdateAsync(User userToUpdate)
-        {
-            var updatedUser = await _userService.UpdateAsync(userToUpdate);
-            return Ok(updatedUser);
-        }
-
-        [HttpPost]
-        [ProducesResponseType(typeof(User), StatusCodes.Status201Created)]
-        public async Task<IActionResult> CreateAsync(User userToCreate)
-        {
-            var createdUser = await _userService.CreateAsync(userToCreate);
-            return Ok(createdUser);
-        }
-
-        [HttpDelete("{id:guid}")]
-        [ProducesResponseType(typeof(User), StatusCodes.Status200OK)]
-        public async Task<IActionResult> DeleteAsync(Guid id)
-        {
-            var deletedUser = await _userService.DeleteAsync(id);
-            return Ok(deletedUser);
-        }
     }
 }

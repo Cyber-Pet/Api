@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace CyberPet.Api.Controllers
 {
     [Route("api/[controller]")]
-    public class PetsController : CoreCrudController<IPetService, PetViewModel, Pet>
+    public class PetsController : CoreCrudController<IPetService, PetRequest, PetResponse, Pet>
     {
         public PetsController(INotifier notifier, IMapper mapper, IPetService petService) : base(notifier, mapper, petService)
         {

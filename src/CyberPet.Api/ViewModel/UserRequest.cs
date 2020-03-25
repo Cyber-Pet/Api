@@ -1,8 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using CyberPet.Api.ViewModel.Base;
+using System.ComponentModel.DataAnnotations;
 
 namespace CyberPet.Api.ViewModel
 {
-    public class UserResgisterViewModel
+    public class UserRequest : BaseRequest
     {
         [Required(AllowEmptyStrings = false, ErrorMessage = "Informar Email")]
         [EmailAddress(ErrorMessage = "Email Invalido")]

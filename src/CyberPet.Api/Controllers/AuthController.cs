@@ -40,13 +40,13 @@ namespace CyberPet.Api.Controllers
         /// Cadastrar novo Usuario
         /// </summary>
         [HttpPost("register")]
-        [ProducesResponseType(typeof(User), StatusCodes.Status201Created)]
+        [ProducesResponseType(typeof(UserResponse), StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> Register([FromBody] UserResgisterViewModel userResgister)
+        public async Task<IActionResult> Register([FromBody] UserRequest userResgister)
         {
             if (!ModelState.IsValid) return CustomBadRequest(ModelState);
             var user = await _authService.Register(userResgister);
-            return CustomCreated("GetUserById", "Usuario registrado!", user, user.Id);
+            return CustomCreated("Usuario registrado!", user);
         }
     }
 }

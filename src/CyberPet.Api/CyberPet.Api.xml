@@ -12,34 +12,49 @@
             Metodo para realizar a autenticação do usuario, e receber o token jwt
             </remarks>
         </member>
-        <member name="M:CyberPet.Api.Controllers.AuthController.Register(CyberPet.Api.ViewModel.UserResgisterViewModel)">
+        <member name="M:CyberPet.Api.Controllers.AuthController.Register(CyberPet.Api.ViewModel.UserRequest)">
             <summary>
             Cadastrar novo Usuario
             </summary>
         </member>
-        <member name="M:CyberPet.Api.Controllers.Base.CoreCrudController`3.Post(`1)">
+        <member name="M:CyberPet.Api.Controllers.Base.CoreCrudController`4.Post(`1)">
             <summary> 
             Cadastra uma nova entidade
             </summary>
             <returns></returns>
         </member>
-        <member name="M:CyberPet.Api.Controllers.Base.CoreCrudController`3.Get(System.Guid)">
+        <member name="M:CyberPet.Api.Controllers.Base.CoreCrudController`4.GetByIdAsync(System.Guid)">
             <summary>
             Lista os parametros de acordo o codigo passado
             </summary>
             <returns></returns>
         </member>
-        <member name="M:CyberPet.Api.Controllers.Base.CoreCrudController`3.Put(System.Guid,`1)">
+        <member name="M:CyberPet.Api.Controllers.Base.CoreCrudController`4.Put(System.Guid,`1)">
             <summary>
             Atualiza os dados de acordo com os parametros passados
             </summary>
             <returns></returns>
         </member>
-        <member name="M:CyberPet.Api.Controllers.Base.CoreCrudController`3.Delete(System.Guid)">
+        <member name="M:CyberPet.Api.Controllers.Base.CoreCrudController`4.Delete(System.Guid)">
             <summary>
             Remove o registro da base de dados
             </summary>
             <returns></returns>
+        </member>
+        <member name="P:CyberPet.Api.ViewModel.Base.BaseResponse.Id">
+            <summary>
+            Código identificador para atualiação do registro
+            </summary>
+        </member>
+        <member name="P:CyberPet.Api.ViewModel.Base.BaseResponse.CreatedAt">
+            <summary>
+            Data de criação do registro
+            </summary>
+        </member>
+        <member name="P:CyberPet.Api.ViewModel.Base.BaseResponse.UpdatedAt">
+            <summary>
+            Data da ultima atualização do registro
+            </summary>
         </member>
         <member name="P:CyberPet.Api.ViewModel.Base.BaseViewModel.Id">
             <summary>

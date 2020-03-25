@@ -7,6 +7,6 @@ namespace CyberPet.Api.Services.Interfaces
     public interface IAuthService
     {
         Task<TokenViewModel> Login(LoginViewModel user);
-        Task<User> Register(UserResgisterViewModel userResgister);
+        Task<User> Register(UserRequest userResgister);
     }
 }

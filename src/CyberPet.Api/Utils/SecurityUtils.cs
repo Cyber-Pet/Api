@@ -7,6 +7,7 @@ namespace CyberPet.Api.Utils
     {
         public static string EncryptPassword(string password)
         {
+            if (string.IsNullOrWhiteSpace(password)) return "";
             SHA256 sha256Hash = SHA256.Create();
 
             byte[] data = sha256Hash.ComputeHash(Encoding.UTF8.GetBytes(password));

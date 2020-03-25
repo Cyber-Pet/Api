@@ -10,8 +10,9 @@ using System.Threading.Tasks;
 
 namespace CyberPet.Api.Controllers.Base
 {
-    public class CoreCrudController<TService, TEntityViewModel, TEntity> : CoreController
-        where TEntityViewModel : BaseViewModel
+    public class CoreCrudController<TService, TEntityRequest, TEntityResponse, TEntity> : CoreController
+        where TEntityRequest : BaseRequest
+        where TEntityResponse : BaseResponse
         where TService : ICoreCrudService<TEntity>
         where TEntity : ICoreModel
     {
@@ -26,23 +27,22 @@ namespace CyberPet.Api.Controllers.Base
         /// Cadastra uma nova entidade
         /// </summary>
         /// <returns></returns>
-        [HttpPost("")]
-        public async Task<ActionResult<TEntityViewModel>> Post(TEntityViewModel entityViewModel)
+        [HttpPost]
+        public async Task<ActionResult<TEntityResponse>> Post(TEntityRequest entityViewModel)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
-            var entity = this._mapper.Map<TEntity>(entityViewModel);
-            entity.Id = NewId.NextGuid();
-            var resultado = await _service.CreateAsync(entity);
-            return CustomResponse("Entidade Cadastrada com Sucesso", resultado);
+            var entity = _mapper.Map<TEntity>(entityViewModel);
+            await _service.CreateAsync(entity);
+            return CustomResponse("Entidade Cadastrada com Sucesso", _mapper.Map<TEntityResponse>(entity));
         }
 
-        [HttpGet]
-        public async Task<ActionResult<List<TEntityViewModel>>> GetAsync()
+        [HttpGet] 
+        public async Task<ActionResult<List<TEntityResponse>>> GetAllAsync()
         {
             if (!ModelState.IsValid) return CustomBadRequest(ModelState);
             var registros = await _service.GetAllAsync();
-            var result = _mapper.Map<List<TEntityViewModel>>(registros);
-            return CustomResponse("Dados recuperados", result);
+            var result = _mapper.Map<List<TEntityResponse>>(registros);
+            return CustomResponse("Registros encontrados!", result);
         }
 
         /// <summary>
@@ -50,11 +50,11 @@ namespace CyberPet.Api.Controllers.Base
         /// </summary>
         /// <returns></returns>
         [HttpGet("{id:guid}")]
-        public async Task<ActionResult<TEntityViewModel>> Get(Guid id)
+        public async Task<ActionResult<TEntityResponse>> GetByIdAsync(Guid id)
         {
             if (!ModelState.IsValid) return CustomBadRequest(ModelState);
             var resultado = await _service.GetByIdAsync(id);
-            return CustomResponse("Registro Encontrado", _mapper.Map<TEntityViewModel>(resultado));
+            return CustomResponse("Registros encontrados!", _mapper.Map<TEntityResponse>(resultado));
         }
 
         /// <summary>
@@ -62,11 +62,11 @@ namespace CyberPet.Api.Controllers.Base
         /// </summary>
         /// <returns></returns>
         [HttpPut("{id:guid}")]
-        public async Task<ActionResult<TEntityViewModel>> Put(Guid id, TEntityViewModel entityViewModel)
+        public async Task<ActionResult<TEntityResponse>> Put(Guid id, TEntityRequest request)
         {
             if (!ModelState.IsValid) return CustomBadRequest(ModelState);
-            entityViewModel.Id = id;
-            var entity = _mapper.Map<TEntity>(entityViewModel);
+            var entity = _mapper.Map<TEntity>(request);
+            entity.Id = id;
             return CustomResponse("Registro Atualizado com Sucesso!", await _service.UpdateAsync(entity));
         }
 
@@ -79,7 +79,7 @@ namespace CyberPet.Api.Controllers.Base
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
             await _service.DeleteAsync(id);
-            return NoContent();
+            return CustomResponse("Registro deletado!", null); ;
         }
     }
 }

@@ -27,13 +27,13 @@ namespace CyberPet.Api.Controllers.Base
                 data
             });
         }
-        protected ActionResult CustomCreated(string actionName, string title, object data, Guid guid)
+        protected ActionResult CustomCreated(string title, object data)
         {
             if (!OperationValid())
             {
                 return CustomBadRequest();
             }
-            return CreatedAtRoute(actionName, new { id = guid }, new
+            return Created("",  new
             {
                 title,
                 data

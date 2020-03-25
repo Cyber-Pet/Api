@@ -21,13 +21,13 @@ namespace CyberPet.Api.Repositories.Base
             _context = context;
             _notifier = notifier;
         }
-        public async Task<int> CreateAsync(TEntity entity)
+        public virtual async Task<int> CreateAsync(TEntity entity)
         {
             await _context.Set<TEntity>().AddAsync(entity);
             return await _context.SaveChangesAsync();
         }
 
-        public async Task<int> DeleteAsync(Guid id)
+        public virtual async Task<int> DeleteAsync(Guid id)
         {
             TEntity entity = await GetByIdAsync(id);
             if (entity != null)
@@ -39,12 +39,12 @@ namespace CyberPet.Api.Repositories.Base
             return -1;
         }
 
-        public async Task<IEnumerable<TEntity>> GetAllAsync()
+        public virtual async Task<IEnumerable<TEntity>> GetAllAsync()
         {
             return await _context.Set<TEntity>().AsNoTracking().ToListAsync();
         }
 
-        public async Task<IEnumerable<TEntity>> GetByCondition(Expression<Func<TEntity, bool>> expression)
+        public virtual async Task<IEnumerable<TEntity>> GetByCondition(Expression<Func<TEntity, bool>> expression)
         {
             return await _context
                 .Set<TEntity>()
@@ -53,7 +53,7 @@ namespace CyberPet.Api.Repositories.Base
                 .ToListAsync();
         }
 
-        public async Task<TEntity> GetByIdAsync(Guid id)
+        public virtual async Task<TEntity> GetByIdAsync(Guid id)
         {
             return await _context.Set<TEntity>().FindAsync(id);
         }

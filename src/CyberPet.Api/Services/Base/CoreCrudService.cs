@@ -12,37 +12,37 @@ namespace CyberPet.Api.Services.Base
         where TEntity : CoreModel
         where TRepository : ICoreRepository<TEntity>
     {
-        protected readonly TRepository repository;
-        protected readonly INotifier notifier;
+        protected readonly TRepository _repository;
+        protected readonly INotifier _notifier;
 
         public CoreCrudService(INotifier notifier, TRepository repository)
         {
-            this.notifier = notifier;
-            this.repository = repository;
+            _notifier = notifier;
+            _repository = repository;
         }
-        public async Task<int> CreateAsync(TEntity entity)
+        public virtual async Task<int> CreateAsync(TEntity entity)
         {
-            return await this.repository.CreateAsync(entity);
-        }
-
-        public async Task<int> DeleteAsync(Guid id)
-        {
-            return await this.repository.DeleteAsync(id);
+            return await _repository.CreateAsync(entity);
         }
 
-        public async Task<IEnumerable<TEntity>> GetAllAsync()
+        public virtual async Task<int> DeleteAsync(Guid id)
         {
-            return await this.repository.GetAllAsync();
+            return await _repository.DeleteAsync(id);
         }
 
-        public async Task<TEntity> GetByIdAsync(Guid id)
+        public virtual async Task<IEnumerable<TEntity>> GetAllAsync()
         {
-            return await this.repository.GetByIdAsync(id);
+            return await _repository.GetAllAsync();
         }
 
-        public async Task<int> UpdateAsync(TEntity entity)
+        public virtual async Task<TEntity> GetByIdAsync(Guid id)
         {
-            return await this.repository.UpdateAsync(entity);
+            return await _repository.GetByIdAsync(id);
+        }
+
+        public virtual async Task<int> UpdateAsync(TEntity entity)
+        {
+            return await _repository.UpdateAsync(entity);
         }
     }
 }

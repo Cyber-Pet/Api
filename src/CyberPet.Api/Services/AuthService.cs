@@ -31,7 +31,7 @@ namespace CyberPet.Api.Services
 
         public async Task<TokenViewModel> Login(LoginViewModel userLogin)
         {
-            var user = await _userService.ReadOneBy(x => x.Email == userLogin.Email);
+            var user = await _userService.GetByEmail(userLogin.Email);
             if (user == null) return null;
             if (user.Password == SecurityUtils.EncryptPassword(userLogin.Password))
             {
@@ -43,10 +43,9 @@ namespace CyberPet.Api.Services
             return null;
         }
 
-        public async Task<User> Register(UserResgisterViewModel userResgister)
+        public async Task<User> Register(UserRequest userResgister)
         {
             User user = _mapper.Map<User>(userResgister);
-            user.Id = NewId.NextGuid();
             await _userService.CreateAsync(user);
             return user;
         }
