@@ -17,6 +17,9 @@ namespace CyberPet.Api.Configuration
             CreateMap<ScheduleRequest, Schedule>();
             CreateMap<Schedule, ScheduleResponse>();
 
+            CreateMap<BowlRequest, Bowl>();
+            CreateMap<Bowl, BowlResponse>();
+
         }
     }
 }
