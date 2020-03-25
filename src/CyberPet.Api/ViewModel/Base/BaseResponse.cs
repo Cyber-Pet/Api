@@ -15,11 +15,11 @@ namespace CyberPet.Api.ViewModel.Base
         /// <summary>
         /// Data de criação do registro
         /// </summary>
-        public DateTime CreatedAt { get; set; }
+        public DateTime CreateAt { get; set; }
 
         /// <summary>
         /// Data da ultima atualização do registro
         /// </summary>
-        public DateTime UpdatedAt { get; set; }
+        public DateTime UpdateAt { get; set; }
     }
 }
