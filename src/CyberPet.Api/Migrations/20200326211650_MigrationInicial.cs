@@ -1,6 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
-using System;
-using System.Collections.Generic;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace CyberPet.Api.Migrations
 {
@@ -8,6 +7,9 @@ namespace CyberPet.Api.Migrations
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.AlterDatabase()
+                .Annotation("Npgsql:Enum:day_of_week", "sunday,monday,tuesday,wednesday,thursday,friday,saturday");
+
             migrationBuilder.CreateTable(
                 name: "Users",
                 columns: table => new
@@ -74,8 +76,7 @@ namespace CyberPet.Api.Migrations
                     CreateAt = table.Column<DateTime>(nullable: false),
                     UpdateAt = table.Column<DateTime>(nullable: false),
                     PetId = table.Column<Guid>(nullable: false),
-                    Time = table.Column<DateTime>(nullable: false),
-                    DaysOfWeek = table.Column<List<DayOfWeek>>(nullable: true)
+                    Time = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -93,15 +94,15 @@ namespace CyberPet.Api.Migrations
                 columns: new[] { "Id", "CreateAt", "Email", "Name", "Password", "UpdateAt" },
                 values: new object[,]
                 {
-                    { new Guid("bfbd39c6-76cb-4f49-8351-09ac4b64cb9c"), new DateTime(2020, 3, 25, 3, 2, 17, 889, DateTimeKind.Local).AddTicks(7850), "ghmeyer0@gmail.com", "Gabriel Helko Meyer", "4edc2113d0937fcc5f79c2f3af0a6aa30fa8fb545bfed7d06693d2c909399600", new DateTime(2020, 3, 25, 3, 2, 17, 890, DateTimeKind.Local).AddTicks(9624) },
-                    { new Guid("62d41afc-2e81-4b5f-9efe-be14c26d8958"), new DateTime(2020, 3, 25, 3, 2, 17, 891, DateTimeKind.Local).AddTicks(587), "gustavoreinertbsi@gmail.com", "Gustavo Reinert", "4edc2113d0937fcc5f79c2f3af0a6aa30fa8fb545bfed7d06693d2c909399600", new DateTime(2020, 3, 25, 3, 2, 17, 891, DateTimeKind.Local).AddTicks(601) },
-                    { new Guid("3e3a3c48-3939-49d3-8ada-81936239a609"), new DateTime(2020, 3, 25, 3, 2, 17, 891, DateTimeKind.Local).AddTicks(626), "rrschiavo@gmail.com", "Renato Schiavo", "4edc2113d0937fcc5f79c2f3af0a6aa30fa8fb545bfed7d06693d2c909399600", new DateTime(2020, 3, 25, 3, 2, 17, 891, DateTimeKind.Local).AddTicks(627) }
+                    { new Guid("bfbd39c6-76cb-4f49-8351-09ac4b64cb9c"), new DateTime(2020, 3, 26, 18, 16, 50, 433, DateTimeKind.Local).AddTicks(446), "ghmeyer0@gmail.com", "Gabriel Helko Meyer", "4edc2113d0937fcc5f79c2f3af0a6aa30fa8fb545bfed7d06693d2c909399600", new DateTime(2020, 3, 26, 18, 16, 50, 433, DateTimeKind.Local).AddTicks(8442) },
+                    { new Guid("62d41afc-2e81-4b5f-9efe-be14c26d8958"), new DateTime(2020, 3, 26, 18, 16, 50, 433, DateTimeKind.Local).AddTicks(9121), "gustavoreinertbsi@gmail.com", "Gustavo Reinert", "4edc2113d0937fcc5f79c2f3af0a6aa30fa8fb545bfed7d06693d2c909399600", new DateTime(2020, 3, 26, 18, 16, 50, 433, DateTimeKind.Local).AddTicks(9131) },
+                    { new Guid("3e3a3c48-3939-49d3-8ada-81936239a609"), new DateTime(2020, 3, 26, 18, 16, 50, 433, DateTimeKind.Local).AddTicks(9210), "rrschiavo@gmail.com", "Renato Schiavo", "4edc2113d0937fcc5f79c2f3af0a6aa30fa8fb545bfed7d06693d2c909399600", new DateTime(2020, 3, 26, 18, 16, 50, 433, DateTimeKind.Local).AddTicks(9212) }
                 });
 
             migrationBuilder.InsertData(
                 table: "Pets",
                 columns: new[] { "Id", "CreateAt", "PetName", "UpdateAt", "UserId" },
-                values: new object[] { new Guid("56714b09-8040-4af5-a984-c21e69fadb42"), new DateTime(2020, 3, 25, 3, 2, 17, 892, DateTimeKind.Local).AddTicks(7254), "Woody", new DateTime(2020, 3, 25, 3, 2, 17, 892, DateTimeKind.Local).AddTicks(7264), new Guid("bfbd39c6-76cb-4f49-8351-09ac4b64cb9c") });
+                values: new object[] { new Guid("56714b09-8040-4af5-a984-c21e69fadb42"), new DateTime(2020, 3, 26, 18, 16, 50, 435, DateTimeKind.Local).AddTicks(1536), "Woody", new DateTime(2020, 3, 26, 18, 16, 50, 435, DateTimeKind.Local).AddTicks(1543), new Guid("bfbd39c6-76cb-4f49-8351-09ac4b64cb9c") });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Bowl_PetId",

@@ -10,8 +10,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace CyberPet.Api.Migrations
 {
     [DbContext(typeof(CyberPetContext))]
-    [Migration("20200325211532_RemovidoEnul")]
-    partial class RemovidoEnul
+    [Migration("20200326211650_MigrationInicial")]
+    partial class MigrationInicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -77,9 +77,9 @@ namespace CyberPet.Api.Migrations
                         new
                         {
                             Id = new Guid("56714b09-8040-4af5-a984-c21e69fadb42"),
-                            CreateAt = new DateTime(2020, 3, 25, 18, 15, 32, 98, DateTimeKind.Local).AddTicks(4637),
+                            CreateAt = new DateTime(2020, 3, 26, 18, 16, 50, 435, DateTimeKind.Local).AddTicks(1536),
                             PetName = "Woody",
-                            UpdateAt = new DateTime(2020, 3, 25, 18, 15, 32, 98, DateTimeKind.Local).AddTicks(4645),
+                            UpdateAt = new DateTime(2020, 3, 26, 18, 16, 50, 435, DateTimeKind.Local).AddTicks(1543),
                             UserId = new Guid("bfbd39c6-76cb-4f49-8351-09ac4b64cb9c")
                         });
                 });
@@ -144,29 +144,29 @@ namespace CyberPet.Api.Migrations
                         new
                         {
                             Id = new Guid("bfbd39c6-76cb-4f49-8351-09ac4b64cb9c"),
-                            CreateAt = new DateTime(2020, 3, 25, 18, 15, 32, 95, DateTimeKind.Local).AddTicks(591),
+                            CreateAt = new DateTime(2020, 3, 26, 18, 16, 50, 433, DateTimeKind.Local).AddTicks(446),
                             Email = "ghmeyer0@gmail.com",
                             Name = "Gabriel Helko Meyer",
                             Password = "4edc2113d0937fcc5f79c2f3af0a6aa30fa8fb545bfed7d06693d2c909399600",
-                            UpdateAt = new DateTime(2020, 3, 25, 18, 15, 32, 96, DateTimeKind.Local).AddTicks(6186)
+                            UpdateAt = new DateTime(2020, 3, 26, 18, 16, 50, 433, DateTimeKind.Local).AddTicks(8442)
                         },
                         new
                         {
                             Id = new Guid("62d41afc-2e81-4b5f-9efe-be14c26d8958"),
-                            CreateAt = new DateTime(2020, 3, 25, 18, 15, 32, 96, DateTimeKind.Local).AddTicks(7371),
+                            CreateAt = new DateTime(2020, 3, 26, 18, 16, 50, 433, DateTimeKind.Local).AddTicks(9121),
                             Email = "gustavoreinertbsi@gmail.com",
                             Name = "Gustavo Reinert",
                             Password = "4edc2113d0937fcc5f79c2f3af0a6aa30fa8fb545bfed7d06693d2c909399600",
-                            UpdateAt = new DateTime(2020, 3, 25, 18, 15, 32, 96, DateTimeKind.Local).AddTicks(7393)
+                            UpdateAt = new DateTime(2020, 3, 26, 18, 16, 50, 433, DateTimeKind.Local).AddTicks(9131)
                         },
                         new
                         {
                             Id = new Guid("3e3a3c48-3939-49d3-8ada-81936239a609"),
-                            CreateAt = new DateTime(2020, 3, 25, 18, 15, 32, 96, DateTimeKind.Local).AddTicks(7424),
+                            CreateAt = new DateTime(2020, 3, 26, 18, 16, 50, 433, DateTimeKind.Local).AddTicks(9210),
                             Email = "rrschiavo@gmail.com",
                             Name = "Renato Schiavo",
                             Password = "4edc2113d0937fcc5f79c2f3af0a6aa30fa8fb545bfed7d06693d2c909399600",
-                            UpdateAt = new DateTime(2020, 3, 25, 18, 15, 32, 96, DateTimeKind.Local).AddTicks(7425)
+                            UpdateAt = new DateTime(2020, 3, 26, 18, 16, 50, 433, DateTimeKind.Local).AddTicks(9212)
                         });
                 });
 
