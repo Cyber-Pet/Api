@@ -1,5 +1,6 @@
 using AutoMapper;
 using CyberPet.Api.Configuration;
+using CyberPet.Api.Hubs;
 using CyberPet.Api.Models;
 using CyberPet.Api.Models.Interfaces;
 using CyberPet.Api.Repositories;
@@ -43,6 +44,10 @@ namespace CyberPet.Api
 
             services.AddScoped<IScheduleService, ScheduleService>();
             services.AddScoped<IScheduleRepository, ScheduleRepository>();
+
+            services.AddScoped<IBowlService, BowlService>();
+            services.AddScoped<IBowlRepository, BowlRepository>();
+            services.AddSignalR();
 
             services.AddScoped<INotifier, Notifier>();
 
@@ -125,6 +130,7 @@ namespace CyberPet.Api
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapHub<BowlHub>("/ws");
             });
         }
         private static void UpdateDatabase(IApplicationBuilder app)
