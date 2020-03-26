@@ -107,10 +107,7 @@ namespace CyberPet.Api
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             UpdateDatabase(app);
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
+            app.UseDeveloperExceptionPage();
             app.UseCors(x => x
                .AllowAnyOrigin()
                .AllowAnyMethod()
