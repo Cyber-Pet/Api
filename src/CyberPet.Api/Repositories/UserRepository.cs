@@ -14,7 +14,7 @@ namespace CyberPet.Api.Repositories
 
         public override async Task<int> CreateAsync(User entity)
         {
-            var user = await _context.Users.FirstOrDefaultAsync(x => x.Email == entity.Email);
+            var user = await _context.Users.FirstOrDefaultAsync(x => x.Email.ToLower() == entity.Email.ToLower());
             if (user == null)
             {
                 return await base.CreateAsync(entity);
@@ -25,7 +25,7 @@ namespace CyberPet.Api.Repositories
         }
         public async Task<User> GetByEmail(string email)
         {
-            var user = await _context.Users.FirstOrDefaultAsync(x => x.Email == email);
+            var user = await _context.Users.FirstOrDefaultAsync(x => x.Email.ToLower() == email.ToLower());
             if (user != null)
             {
                 return user;
