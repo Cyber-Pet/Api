@@ -37,7 +37,15 @@ namespace CyberPet.Api.Services.Base
 
         public virtual async Task<TEntity> GetByIdAsync(Guid id)
         {
-            return await _repository.GetByIdAsync(id);
+            var entity  = await _repository.GetByIdAsync(id);
+
+            if (entity == null)
+            {
+                _notifier.Add("Nenhum registro encontrado");
+                return null;
+            }
+            return entity;
+
         }
 
         public virtual async Task<int> UpdateAsync(TEntity entity)
