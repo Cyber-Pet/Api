@@ -46,7 +46,7 @@ namespace CyberPet.Api.Models
             );
 
             modelBuilder.Entity<Pet>().HasData(
-                new Pet { Id = Guid.Parse("56714b09-8040-4af5-a984-c21e69fadb42"), PetName = "Woody", UserId = Guid.Parse("bfbd39c6-76cb-4f49-8351-09ac4b64cb9c"), CreateAt = DateTime.Now, UpdateAt = DateTime.Now }
+                new Pet { Id = Guid.Parse("56714b09-8040-4af5-a984-c21e69fadb42"), PetName = "Woody", UserId = Guid.Parse("bfbd39c6-76cb-4f49-8351-09ac4b64cb9c"), CreateAt = new DateTime(2020, 4, 20, 14, 42, 17, 444, DateTimeKind.Local), UpdateAt = new DateTime(2020, 4, 20, 14, 42, 17, 444, DateTimeKind.Local) }
                 );
 
         }

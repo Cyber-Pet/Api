@@ -3,15 +3,17 @@ using System;
 using CyberPet.Api.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace CyberPet.Api.Migrations
 {
     [DbContext(typeof(CyberPetContext))]
-    partial class CyberPetContextModelSnapshot : ModelSnapshot
+    [Migration("20200420174217_AddRole")]
+    partial class AddRole
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -78,9 +80,9 @@ namespace CyberPet.Api.Migrations
                         new
                         {
                             Id = new Guid("56714b09-8040-4af5-a984-c21e69fadb42"),
-                            CreateAt = new DateTime(2020, 4, 20, 14, 42, 17, 444, DateTimeKind.Local),
+                            CreateAt = new DateTime(2020, 4, 20, 14, 42, 17, 443, DateTimeKind.Local).AddTicks(2820),
                             PetName = "Woody",
-                            UpdateAt = new DateTime(2020, 4, 20, 14, 42, 17, 444, DateTimeKind.Local),
+                            UpdateAt = new DateTime(2020, 4, 20, 14, 42, 17, 444, DateTimeKind.Local).AddTicks(135),
                             UserId = new Guid("bfbd39c6-76cb-4f49-8351-09ac4b64cb9c")
                         });
                 });
