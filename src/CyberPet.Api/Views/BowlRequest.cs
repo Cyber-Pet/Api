@@ -5,7 +5,6 @@ namespace CyberPet.Api.Views
 {
     public class BowlRequest : BaseRequest
     {
-        public string Token { get; set; }
         public Guid PetId { get; set; }
     }
 }
