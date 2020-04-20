@@ -16,5 +16,6 @@ namespace CyberPet.Api.Models
         [StringLength(128, MinimumLength = 6)]
         public string Password { get; set; }
         public ICollection<Pet> Pets { get; set; }
+        public string Role { get; set; }
     }
 }

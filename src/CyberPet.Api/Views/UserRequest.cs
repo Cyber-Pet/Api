@@ -15,5 +15,7 @@ namespace CyberPet.Api.Views
 
         [Required(AllowEmptyStrings = false, ErrorMessage = "Informar Nome")]
         public string Name { get; set; }
+        
+        public string Role { get; set; }
     }
 }

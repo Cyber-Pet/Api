@@ -62,7 +62,8 @@ namespace CyberPet.Api.Services
                 {
                     new Claim(ClaimTypes.Email, user.Email.ToString()),
                     new Claim(ClaimTypes.Name, user.Name.ToString()),
-                    new Claim("Id", user.Id.ToString()) 
+                    new Claim("Id", user.Id.ToString()),
+                    new Claim(ClaimTypes.Role, user.Role.ToString())
                 }),
                 Expires = DateTime.UtcNow.AddHours(1),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(secret), SecurityAlgorithms.HmacSha256Signature),

@@ -40,7 +40,7 @@ namespace CyberPet.Api.Controllers.Base
         public virtual async Task<ActionResult<List<TEntityResponse>>> GetAllAsync()
         {
             if (!ModelState.IsValid) return CustomBadRequest(ModelState);
-            var registros = await _service.GetAllAsync();
+            var registros = await _service.GetAllAsync();         
             var result = _mapper.Map<List<TEntityResponse>>(registros);
             return CustomResponse("Registros encontrados!", result);
         }

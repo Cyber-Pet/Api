@@ -62,6 +62,10 @@ namespace CyberPet.Api.Controllers.Base
             }
             return CustomBadRequest();
         }
+        protected string GetClaim(string type)
+        {
+            return HttpContext.User.Identities.First().Claims.FirstOrDefault(x => x.Type == type).Value;
+        }
 
     }
 }

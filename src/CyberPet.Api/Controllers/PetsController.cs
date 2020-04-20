@@ -5,15 +5,29 @@ using CyberPet.Api.Models.Interfaces;
 using CyberPet.Api.Services.Interfaces;
 using CyberPet.Api.Views;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Threading.Tasks;
 
 namespace CyberPet.Api.Controllers
 {
     
     public class PetsController : CoreCrudController<IPetService, PetRequest, PetResponse, Pet>
     {
+        private readonly IMapper mapper;
+        private readonly IPetService petService;
+
         public PetsController(INotifier notifier, IMapper mapper, IPetService petService) : base(notifier, mapper, petService)
         {
+            this.mapper = mapper;
+            this.petService = petService;
+        }
 
+        [HttpGet("{id:guid}")]
+        public virtual async Task<ActionResult<PetResponse>> GetAllByUserIdAsync(Guid id)
+        {
+            if (!ModelState.IsValid) return CustomBadRequest(ModelState);
+            var resultado = await this.petService.GetByIdAsync(id);
+            return CustomResponse("Registros encontrados!", this.mapper.Map<PetResponse>(resultado));
         }
     }
 }
