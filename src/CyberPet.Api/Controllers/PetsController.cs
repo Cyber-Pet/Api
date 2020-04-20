@@ -22,7 +22,7 @@ namespace CyberPet.Api.Controllers
             this.petService = petService;
         }
 
-        [HttpGet("{id:guid}")]
+        [HttpGet("user/{id:guid}")]
         public virtual async Task<ActionResult<PetResponse>> GetAllByUserIdAsync(Guid id)
         {
             if (!ModelState.IsValid) return CustomBadRequest(ModelState);
