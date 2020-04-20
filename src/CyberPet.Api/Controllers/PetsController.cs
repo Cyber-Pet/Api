@@ -6,6 +6,7 @@ using CyberPet.Api.Services.Interfaces;
 using CyberPet.Api.Views;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace CyberPet.Api.Controllers
@@ -26,8 +27,8 @@ namespace CyberPet.Api.Controllers
         public virtual async Task<ActionResult<PetResponse>> GetAllByUserIdAsync(Guid id)
         {
             if (!ModelState.IsValid) return CustomBadRequest(ModelState);
-            var resultado = await this.petService.GetByIdAsync(id);
-            return CustomResponse("Registros encontrados!", this.mapper.Map<PetResponse>(resultado));
+            var resultado = await this.petService.GetAllByUserIdAsync(id);
+            return CustomResponse("Registros encontrados!", this.mapper.Map<List<PetResponse>>(resultado));
         }
     }
 }
