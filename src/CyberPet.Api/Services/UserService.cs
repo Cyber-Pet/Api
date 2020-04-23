@@ -15,6 +15,7 @@ namespace CyberPet.Api.Services
         public override Task<int> CreateAsync(User user)
         {
             user.Password = SecurityUtils.EncryptPassword(user.Password);
+            user.Role = string.IsNullOrWhiteSpace(user.Role) ? "user" : user.Role;
             return base.CreateAsync(user);
         }
 
