@@ -58,7 +58,7 @@ namespace CyberPet.Api.Repositories.Base
             return await _context.Set<TEntity>().FindAsync(id);
         }
 
-        public async Task<int> UpdateAsync(TEntity entity)
+        public virtual async Task<int> UpdateAsync(TEntity entity)
         {
             _context.Set<TEntity>().Update(entity);
             return await _context.SaveChangesAsync();

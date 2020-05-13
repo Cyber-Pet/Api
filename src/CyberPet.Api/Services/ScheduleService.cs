@@ -12,6 +12,10 @@ namespace CyberPet.Api.Services
 {
     public class ScheduleService : CoreCrudService<Schedule, IScheduleRepository> , IScheduleService
     {
-        public ScheduleService(INotifier notifier, IScheduleRepository scheduleRepository) : base(notifier, scheduleRepository) { }
+        public ScheduleService(INotifier notifier, IScheduleRepository scheduleRepository) : base(notifier,
+            scheduleRepository)
+        {
+        }
+
     }
 }

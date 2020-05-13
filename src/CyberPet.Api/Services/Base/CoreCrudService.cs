@@ -4,6 +4,7 @@ using CyberPet.Api.Repositories.Interfaces;
 using CyberPet.Api.Services.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace CyberPet.Api.Services.Base
@@ -51,6 +52,11 @@ namespace CyberPet.Api.Services.Base
         public virtual async Task<int> UpdateAsync(TEntity entity)
         {
             return await _repository.UpdateAsync(entity);
+        }
+
+        public virtual async Task<IEnumerable<TEntity>> GetByCondition(Expression<Func<TEntity, bool>> expression)
+        {
+            return await _repository.GetByCondition(expression);
         }
     }
 }

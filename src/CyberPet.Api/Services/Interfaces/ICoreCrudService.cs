@@ -1,6 +1,7 @@
 ﻿using CyberPet.Api.Models.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace CyberPet.Api.Services.Interfaces
@@ -17,6 +18,8 @@ namespace CyberPet.Api.Services.Interfaces
         Task<IEnumerable<TEntity>> GetAllAsync();
 
         Task<int> UpdateAsync(TEntity entity);
+
+        Task<IEnumerable<TEntity>> GetByCondition(Expression<Func<TEntity, bool>> expression);
 
     }
 }
