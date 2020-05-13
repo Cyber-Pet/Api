@@ -9,7 +9,8 @@ namespace CyberPet.Api.Views
     public class ScheduleResponse : BaseResponse
     {
         public Guid PetId { get; set; }
-        public DateTime Time { get; set; }
+         public int Hour { get; set; }
+        public int Minutes { get; set; }
     }
 
 }
