@@ -7,7 +7,7 @@ namespace CyberPet.Api.Models
     {
         public string Token { get; set; }
         
-        public Guid PetId { get; set; }
+        public Guid? PetId { get; set; }
         public Pet Pet { get; set; }
     }
 }
