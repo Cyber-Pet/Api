@@ -18,6 +18,7 @@ namespace CyberPet.Api.Repositories
         public async Task<IEnumerable<Pet>> GetAllByUserIdAsync(Guid id)
         {
             var pets = await _context.Pets
+                .Include(x => x.Bowl)
                 .Where(x => x.UserId == id)
                 .ToListAsync();
             if (pets.Any())

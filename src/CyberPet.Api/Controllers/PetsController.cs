@@ -7,11 +7,12 @@ using CyberPet.Api.Views;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace CyberPet.Api.Controllers
 {
-    
+
     public class PetsController : CoreCrudController<IPetService, PetRequest, PetResponse, Pet>
     {
         private readonly IMapper mapper;
@@ -22,13 +23,20 @@ namespace CyberPet.Api.Controllers
             this.mapper = mapper;
             this.petService = petService;
         }
-
+        
         [HttpGet("user/{id:guid}")]
         public virtual async Task<ActionResult<PetResponse>> GetAllByUserIdAsync(Guid id)
         {
             if (!ModelState.IsValid) return CustomBadRequest(ModelState);
             var resultado = await this.petService.GetAllByUserIdAsync(id);
-            return CustomResponse("Registros encontrados!", this.mapper.Map<List<PetResponse>>(resultado));
+            var responseList = this.mapper.Map<List<PetResponse>>(resultado);
+
+            foreach (var response in responseList)
+            {
+                response.BowlId = resultado.FirstOrDefault(x => x.Bowl?.PetId == response.Id)?.Bowl.Id ?? null;
+            }
+
+            return CustomResponse("Registros encontrados!", responseList);
         }
     }
 }
