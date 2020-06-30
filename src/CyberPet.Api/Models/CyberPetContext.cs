@@ -9,8 +9,17 @@ namespace CyberPet.Api.Models
 {
     public class CyberPetContext : DbContext
     {
+        private Func<object, object> p;
+
         public CyberPetContext(DbContextOptions<CyberPetContext> options) : base(options)
         {
+        }
+
+        public CyberPetContext() { }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseNpgsql(@"Host=tuffi.db.elephantsql.com;Database=raxfebkw;Username=raxfebkw;Password=DJSQIizE-07MwsVQSt_sWWTG_mtPC55A");
         }
         public DbSet<User> Users { get; set; }
         public DbSet<Pet> Pets { get; set; }

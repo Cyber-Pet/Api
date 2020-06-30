@@ -1,19 +1,18 @@
 using AutoMapper;
 using CyberPet.Api.Configuration;
-using CyberPet.Api.Hubs;
 using CyberPet.Api.Models;
 using CyberPet.Api.Models.Interfaces;
 using CyberPet.Api.Repositories;
 using CyberPet.Api.Repositories.Interfaces;
 using CyberPet.Api.Services;
 using CyberPet.Api.Services.Interfaces;
+using CyberPet.Api.Workers;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System;
@@ -47,7 +46,8 @@ namespace CyberPet.Api
 
             services.AddScoped<IBowlService, BowlService>();
             services.AddScoped<IBowlRepository, BowlRepository>();
-            services.AddSignalR();
+
+            services.AddHostedService<ScheduleWorker>();
 
             services.AddScoped<INotifier, Notifier>();
 
@@ -127,7 +127,6 @@ namespace CyberPet.Api
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
-                endpoints.MapHub<BowlHub>("/ws");
             });
         }
         private static void UpdateDatabase(IApplicationBuilder app)
