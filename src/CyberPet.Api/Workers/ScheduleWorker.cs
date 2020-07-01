@@ -18,7 +18,7 @@ namespace CyberPet.Api.Workers
         private const int Port = 1883;
         
         private Timer _timer;
-        private static IMqttClient _mqttClient;
+        private IMqttClient _mqttClient;
         public ScheduleWorker()
         {
             var factory = new MqttFactory();
@@ -41,7 +41,7 @@ namespace CyberPet.Api.Workers
             List<Schedule> schedules = await GetSchedules(now);
             if (schedules.Any())
             {
-                schedules.ForEach(x => RunBowl(x?.Pet?.Bowl?.Token));
+                schedules.ForEach(async x => await RunBowl(x?.Pet?.Bowl?.Token));
             }
         }
 
@@ -56,17 +56,19 @@ namespace CyberPet.Api.Workers
                 .Where(x => x.Hour == date.Hour && x.Minutes == date.Minute)
                 .ToListAsync();
         }
-        public static async Task ConnectMqttServer()
+        public async Task ConnectMqttServer()
         {
             _ = await _mqttClient.ConnectAsync(
                 new MqttClientOptionsBuilder()
                     .WithTcpServer(Server, Port)
                     .Build());
+            return;
         }
 
-        public static async Task RunBowl(string bowlToken)
+        public async Task RunBowl(string bowlToken)
         {
-            _ = _mqttClient.PublishAsync($"cyber-pet/execute/{bowlToken}", "");
+            _ = await _mqttClient.PublishAsync($"cyber-pet/execute/{bowlToken}", "");
+            return;
         }
 
         public Task StopAsync(CancellationToken stoppingToken)

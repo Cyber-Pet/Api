@@ -24,6 +24,7 @@ namespace CyberPet.Api.Models
         public DbSet<User> Users { get; set; }
         public DbSet<Pet> Pets { get; set; }
         public DbSet<Schedule> Schedules { get; set; }
+        public DbSet<Bowl> Bowls { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

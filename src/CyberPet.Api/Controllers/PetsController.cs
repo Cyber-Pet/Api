@@ -33,18 +33,21 @@ namespace CyberPet.Api.Controllers
         {
             using (CyberPetContext context = new CyberPetContext())
             {
-                string bowlToken = context.Pets
-                    .Include(x => x.Bowl)
+                string bowlToken = context.Bowls
+                    .Where(x => x.PetId == id)
                     .FirstOrDefault()?
-                    .Bowl?.Token;
+                    .Token;
 
                 if (string.IsNullOrWhiteSpace(bowlToken))
                 {
                     notifier.Add("Não existe pode cadastrado para este Pet");
                     return CustomBadRequest();
                 }
-                await ScheduleWorker.ConnectMqttServer();
-                await ScheduleWorker.RunBowl(bowlToken);
+                using (var scheduler = new ScheduleWorker())
+                {
+                    await scheduler.ConnectMqttServer();
+                    await scheduler.RunBowl(bowlToken);
+                }
                 return CustomResponse("Pet Alimentado!", null);
             }
 

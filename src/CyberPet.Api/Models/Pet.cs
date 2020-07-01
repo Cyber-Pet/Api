@@ -10,7 +10,7 @@ namespace CyberPet.Api.Models
         [Required]
         public string PetName { get; set; }
         public string? PetImage { get; set; }
-        public Bowl Bowl { get; set; }
+        public virtual Bowl Bowl { get; set; }
         public ICollection<Schedule> Schedules { get; set; }
 
         [Required]
