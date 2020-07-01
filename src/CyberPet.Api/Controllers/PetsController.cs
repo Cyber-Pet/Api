@@ -18,7 +18,7 @@ namespace CyberPet.Api.Controllers
     public class PetsController : CoreCrudController<IPetService, PetRequest, PetResponse, Pet>
     {
         private readonly IMapper mapper;
-        private readonly IPetService petService;,
+        private readonly IPetService petService;
         private readonly INotifier notifier;
 
         public PetsController(INotifier notifier, IMapper mapper, IPetService petService) : base(notifier, mapper, petService)
